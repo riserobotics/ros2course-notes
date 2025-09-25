@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=39035&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.0">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Home :: My New Hugo Site</title>
+
+    
+    <link href="/css/nucleus.css?1758832380" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1758832380" rel="stylesheet">
+    <link href="/css/hybrid.css?1758832380" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1758832380" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1758832380" rel="stylesheet">
+    <link href="/css/auto-complete.css?1758832380" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1758832380" rel="stylesheet">
+    <link href="/css/theme.css?1758832380" rel="stylesheet">
+    <link href="/css/tabs.css?1758832380" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1758832380" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1758832380" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1758832380"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1758832380"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1758832380"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:39035\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1758832380"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/installation-and-setup/" title="Getting started &amp; Installation" class="dd-item
+        
+        
+        
+        ">
+      <a href="/installation-and-setup/">
+          <b>I. </b>Getting started &amp; Installation
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/installation-and-setup/prerequisites/" title="Prerequisites" class="dd-item ">
+        <a href="/installation-and-setup/prerequisites/">
+        Prerequisites
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/installation-and-setup/installation/" title="Installation" class="dd-item ">
+        <a href="/installation-and-setup/installation/">
+        Installation
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+
+        
+
+<span id="sidebar-toggle-span">
+<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
+</span>
+
+ 
+<h2 id="an-introduction-to-ros2">An Introduction to ROS2</h2>
+<p><strong>Welcome to the RISE &ldquo;An Introduction to ROS2&rdquo; crash course!</strong></p>
+<p>The goal of this website is to provide notes and references for people interested in developing code within the ROS2 framework for use on the RISE exoskeleton. The world of ROS2 and robotic programming as a whole is quite vast, and this introduction is not attempting to introduce you to every nook and cranny of it. This is - hopefully not literally - a crash course, a set of notes and tasks that will help you get up to speed with writing ROS2 based code.</p>
+<p>There are several parts of the ROS2 framework that we dont use on the exoskeleton for various reasons. As a result, those will not be covered here, or at most just quickly glossed over. Some parts of the framework are of particular importance, and will therefore be looked on with greater attention to detail. If you want to learn more about the ROS2 framework as a whole, there are lots of <a href="">resources</a> you can choose from, that take a much more holistic approach to ROS2 and robotic programming.</p>
+<hr>
+<p>We don&rsquo;t assume any prerequisites in robotic programming, or any of the tools named in this tutorial - even though it certainly helps! This tutorial is structured so that you can skip chapters and parts that deal with information you already know. Every chapter is presented in four different ways:</p>
+<ol>
+<li>
+<p>This <strong>website</strong> combines notes, graphs, images and code snippets. Wherever possible we make references to the code used on the current exoskeleton.</p>
+</li>
+<li>
+<p>The <strong>presentation slides</strong> avaliable for download on the top of each chapter page. These are the slides used during the introduction workshop at the beginning of each semester.</p>
+</li>
+<li>
+<p>The <strong>video recordings</strong> of these presentations, as well as some other topics that are worth it to show in greater detail.</p>
+</li>
+<li>
+<p>Several <strong>code examples</strong> and notebooks for trying out the content by yourself on your own machine. All of these can be found in <a href="https://github.com/riserobotics/ros2course">this</a> repository.</p>
+</li>
+</ol>
+<p>You are welcome to only take a look at some of these, or watch all of them. Not for every task in the semester there is a need to know every bit of what&rsquo;s explained in this tutorial, but having a general grasp on how things work is quite useful.</p>
+	
+  
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1758832380"></script>
+    <script src="/js/perfect-scrollbar.min.js?1758832380"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1758832380"></script>
+    <script src="/js/jquery.sticky.js?1758832380"></script>
+    <script src="/js/featherlight.min.js?1758832380"></script>
+    <script src="/js/highlight.pack.js?1758832380"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1758832380"></script>
+    <script src="/js/learn.js?1758832380"></script>
+    <script src="/js/hugo-learn.js?1758832380"></script>
+    
+        
+            <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

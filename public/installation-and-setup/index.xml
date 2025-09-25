@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting started &amp; Installation on My New Hugo Site</title>
+    <link>http://localhost:39035/installation-and-setup/</link>
+    <description>Recent content in Getting started &amp; Installation on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:39035/installation-and-setup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prerequisites</title>
+      <link>http://localhost:39035/installation-and-setup/prerequisites/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:39035/installation-and-setup/prerequisites/</guid>
+      <description>&lt;h4 id=&#34;required-knowledge&#34;&gt;Required knowledge&lt;/h4&gt;&#xA;&lt;p&gt;We don&amp;rsquo;t require previous knowledge in robotic programming or ROS1/2 for following along with this course. At the same time, getting up to speed with ROS2 and keeping track with this tutorial is much harder if you don&amp;rsquo;t have at least some of the following prerequisites.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;You should have basic familiarity with &lt;strong&gt;Linux&lt;/strong&gt;. ROS2 as a framework, and the RISE exoskeleton in particular, run a GNU/Linux distribution as an operating system. We will use a containerization technology (don&amp;rsquo;t worry about what that is, understand it is not a prerequisite!) to abstract that away from you as much as possible, and in many cases there will probably be a way to avoid directly using Linux, however using it and knowing the basic workings makes many things a lot easier!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Installation</title>
+      <link>http://localhost:39035/installation-and-setup/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:39035/installation-and-setup/installation/</guid>
+      <description>&lt;p&gt;Great! With all formal details out of the way we can start to dive into ROS2. In this tutorial we will first install the framework an then start explaining how it works, to give you the opportunity to try everything on a practical example, while reading or watching the tutorial. Also, as you will notice later on, we will install ROS2 in a way that abstracts most of the &amp;ldquo;technical details&amp;rdquo; away for a later date. So, don&amp;rsquo;t worry about not understanding anything for now, this is just a brief period and we will explain everything in much more detail as soon as we are done here.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
