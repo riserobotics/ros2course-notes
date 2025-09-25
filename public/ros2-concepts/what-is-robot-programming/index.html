@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Getting started &amp; Installation :: My New Hugo Site</title>
+    <title>What is robot programming? :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1758836583" rel="stylesheet">
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/installation-and-setup/">
+  <body class="" data-url="/ros2-concepts/what-is-robot-programming/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -81,7 +81,7 @@
     
     <li data-nav-id="/installation-and-setup/" title="Getting started &amp; Installation" class="dd-item
         
-        active
+        
         
         ">
       <a href="/installation-and-setup/">
@@ -158,7 +158,7 @@
   
     
     <li data-nav-id="/ros2-concepts/" title="Core Concepts of ROS2" class="dd-item
-        
+        parent
         
         
         ">
@@ -207,7 +207,7 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/what-is-robot-programming/" title="What is robot programming?" class="dd-item ">
+      <li data-nav-id="/ros2-concepts/what-is-robot-programming/" title="What is robot programming?" class="dd-item active">
         <a href="/ros2-concepts/what-is-robot-programming/">
         What is robot programming?
         <i class="fas fa-check read-icon"></i>
@@ -270,6 +270,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -280,7 +282,13 @@
             
           
           
-            <a href='/'>Home</a> > Getting started & Installation
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > What is robot programming?
+          
+        
           
         
           
@@ -289,6 +297,21 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -296,29 +319,45 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              What is robot programming?
+            </h1>
           
 
         
 
 
+<h4 id="a-little-bit-of-history">A little bit of History!</h4>
+<p>ROS stands for Robot Operating System, yet it is not an operating system. Most accurately, we may describe ROS2 as a collection of tools, libraries, middleware and a community of packages that can be used to control some robots. The federated structure, and the modular nature of the system allows users to interchange software packages inbetween projects, and make components reusable.</p>
+<p>Traditionally this was, and still is not always the most straight forward approach. Robots are by nature quite heterogenous machines, in that two robots must not share any two components or even remotely look alike. This makes robot programming hard and equally heterogenous, people and companies usually started by developing robot software specifically tailored to their own needs, which is in many cases the right approach for companies with large R&amp;D budgets and many people involved in development.</p>
+<p>For academia and startup environments however, this would mean a massive investment of time and resources into the development of boilerplate code to enable robots to do basic tasks, reinventing the wheel many times over with no real gain of performance. For this audience <a href="https://en.wikipedia.org/wiki/Willow_Garage">Willow Garage</a>, a startup accelerator for early-stage robotic companies laid the groundwork for what was to become ROS. With the main advantage of making robotic software modular and interchangeable, it applied the principles of open source collaboration to robotic software, reducing startup times for new systems drastically. This obviously results in ROS being able to do essentially everything, with the right combinations of community contributed ROS packages and self written code to combine everything into a working piece of software, but none of it perfectly well.</p>
+<p>Still ROS, and by now ROS2 has become the defacto standard in academia and early stage robotic companies and it enjoys some adoption in industry as well. Especially in the field of robotic arms, where real time requirements are not as hard as with bipedal underactuated system, ROS2 prevails and is the dominant software framework for robotic software development.</p>
+<h4 id="core-principles">Core principles</h4>
+<p>Robotic software must adapt to the robot that it is applied on. Therefore ROS is set up to mirror the way robots are build, a collection of many individual parts that work together and depend on one another. For example, in a physical robot you might have motor controllers, batteries, a set of motion sensors and a camera. Each one of these components requires some software to control it.</p>
+<ul>
+<li>
+<p>The motor controller has to be controlled by the appropriate driver software that allows for communication via the bus system. Additionally we require some control algorithms to enable a simple control strategy that converts position data of the motor to individual commands over some period of time.</p>
+</li>
+<li>
+<p>The batteries requires the same driver, but additionally there may be a load balancing model that has to be computed. Also battery charge estimation is to be performed by using sensor values measured within the battery.</p>
+</li>
+<li>
+<p>Motion sensors have to have sensor fusion algorithms applied to itself, to make sure that the values that we measured are robust and correct</p>
+</li>
+<li>
+<p>The camera has to have computer vision techniques used on its images. This way object detection can be implemented, and computer vision models can be applied to the camera feeds for online evaluation of the surroundings of the robot.</p>
+</li>
+</ul>
+<p>When building robotic software, we therefore want to follow this physical principle of modularization. A robot is a collection of different components that are connect together by the means of a communication network, mechanical connections and an electrical distribution network - our robotic software is a collection of different software processes that are connected together using a common communication standard on a communication network.</p>
 
-	<h3 id="chapter-i">Chapter I</h3>
-<h1 id="installation--setup">Installation &amp; Setup</h1>
-<p>In this chapter we explain to you how to set up the ROS2 environment for understanding the framework and developing code within the project. This is not identical to the setup instructions for the RISE-OS software stack that we will eventually develop, however it&rsquo;s very similar :)</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
-        
-            </div> 
         
         </div>
         
@@ -350,6 +389,57 @@
             
                 
                     
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -383,53 +473,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -482,3 +525,4 @@
 
   </body>
 </html>
+

@@ -2,18 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:39035/installation-and-setup/prerequisites/</loc>
-  </url><url>
-    <loc>http://localhost:39035/installation-and-setup/installation/</loc>
-  </url><url>
-    <loc>http://localhost:39035/installation-and-setup/</loc>
+    <loc>http://localhost:1313/installation-and-setup/</loc>
     <lastmod>2025-09-24T19:26:24+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:39035/</loc>
+    <loc>http://localhost:1313/ros2-concepts/defining-the-robot/</loc>
+  </url><url>
+    <loc>http://localhost:1313/installation-and-setup/prerequisites/</loc>
+  </url><url>
+    <loc>http://localhost:1313/ros2-concepts/</loc>
     <lastmod>2025-09-24T19:26:24+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:39035/categories/</loc>
+    <loc>http://localhost:1313/installation-and-setup/installation/</loc>
   </url><url>
-    <loc>http://localhost:39035/tags/</loc>
+    <loc>http://localhost:1313/ros2-concepts/what-is-robot-programming/</loc>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-09-24T19:26:24+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

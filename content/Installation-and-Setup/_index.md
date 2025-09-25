@@ -1,7 +1,7 @@
 +++
 title = "Getting started & Installation"
 date = 2025-09-24T19:26:24+02:00
-weight = 5
+weight = 1
 chapter = true
 pre = "<b>I. </b>"
 draft = false

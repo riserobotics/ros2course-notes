@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Getting started &amp; Installation :: My New Hugo Site</title>
+    <title>Defining a robot :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1758836583" rel="stylesheet">
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/installation-and-setup/">
+  <body class="" data-url="/ros2-concepts/defining-the-robot/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -81,7 +81,7 @@
     
     <li data-nav-id="/installation-and-setup/" title="Getting started &amp; Installation" class="dd-item
         
-        active
+        
         
         ">
       <a href="/installation-and-setup/">
@@ -158,7 +158,7 @@
   
     
     <li data-nav-id="/ros2-concepts/" title="Core Concepts of ROS2" class="dd-item
-        
+        parent
         
         
         ">
@@ -186,7 +186,7 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/defining-the-robot/" title="Defining a robot" class="dd-item ">
+      <li data-nav-id="/ros2-concepts/defining-the-robot/" title="Defining a robot" class="dd-item active">
         <a href="/ros2-concepts/defining-the-robot/">
         Defining a robot
         <i class="fas fa-check read-icon"></i>
@@ -270,6 +270,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -280,7 +282,13 @@
             
           
           
-            <a href='/'>Home</a> > Getting started & Installation
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > Defining a robot
+          
+        
           
         
           
@@ -289,6 +297,21 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -296,29 +319,29 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              Defining a robot
+            </h1>
           
 
         
 
 
+<p>When we talk about robot programming, we should spend a quick minute thinking about what the robot exoskeleton that we use is made of and what parts are inside. THis will allows us to later understand what is going on, when we talk about connecting bus systems to actuators and reading pressure values from sensors.</p>
+<h4 id="what-are-robots-made-of">What are robots made of?</h4>
+<p>In our case, the robot is always the exoskeleton, or at the very least a simulation of the exoskeleton. There are plenty of other robots out there, from specialized industry machinery like pick and place machines tha assemble PCBs, humanoid bipedal walking robot like the famous Boston Dynamics Atlas, Quadrupeds like ANYmal that most resemble dogs or robotic arms with gripper attachments that can help to move small object around in environments designed for humans.</p>
+<p>At their core, all of these robots have to move around to be useful and to be able to exert force onto objects in their surrounding. The source of this movement is an actuator. Actuators come in many different shapes and sizes, and follow different operational principles as well. Pneumatic actuators are moved by compressed air or other gases displacing components of cylinders. Very similarly, hydraulic actuators move robots by pumping some hydraulic fluid, often an oil, through pipes and valves to reach cylinders. Previously hydraulic actuation was th go-to method for many robots, especially in the humanoid space. FOr example, the original <a href="https://en.wikipedia.org/wiki/Atlas_(robot)">Atlas</a> robot used hydraulic fluids to move it&rsquo;s limbs. More recently though, electromechanical actuation has taken the lead, as electric motors have become smaller and their power density, i.e. the amount of torque they can exert per unit of space/weight, has grown.</p>
+<p>Most robots that are electromechanically actuated use a type of electric motor called a BLDC motor. This motor type has many advantage, especially when applied to the field of robotics - however they have one major flaw: making them turn is not easy! Whereas with a classic DC or AC motor one simply applies a voltage, BLDC motors need a complicated commutation procedure that has to be provided by a special motor controller. These small devices implement the control technology for the individual joints of a robot, like our exoskeleton! In additional to simply controlling the motor, they also contain control loops that make sure that we can give the motor controller a positional value, i.e. some degree value in a rotating actuator, and the motor moves there. The source of this position information is a sensor that we refer to as an encoder. These also come in many different shapes and sizes, if they measure a turn on an axis they are referred to as rotational encoders, if they measure position on a line we call them linear encoder. For measuring the position, several different methods exist, most commonly either an optical or magnetic measurement principle is used.</p>
+<p>The information, where the motor is required to turn to is provided via a Bus system. Multiple bus systems exist, most commonly we will probably find a variation of CAN however many modern robots use EtherCAT. The bus systems can be understood of a local, specialized network that transfers sensor readings and target information between components of a machine. This is the communication infrastructure that connects the main controller, on which ROS2 will be running, with the individual components of the robot, i.e. the actuators, sensors etc.</p>
 
-	<h3 id="chapter-i">Chapter I</h3>
-<h1 id="installation--setup">Installation &amp; Setup</h1>
-<p>In this chapter we explain to you how to set up the ROS2 environment for understanding the framework and developing code within the project. This is not identical to the setup instructions for the RISE-OS software stack that we will eventually develop, however it&rsquo;s very similar :)</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
-        
-            </div> 
         
         </div>
         
@@ -350,57 +373,8 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -430,6 +404,59 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -482,3 +509,4 @@
 
   </body>
 </html>
+
