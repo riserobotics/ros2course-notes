@@ -28,4 +28,9 @@ We don't assume any prerequisites in robotic programming, or any of the tools na
 
 4. Several **code examples** and notebooks for trying out the content by yourself on your own machine. All of these can be found in [this](https://github.com/riserobotics/ros2course) repository.
 
+{{% notice warning %}}
+As you will learn, ROS has been under development for a while. Right now, there are many *Distributions* of ROS that each are named after some species of turtle ([**Humble** Hawksbill](https://en.wikipedia.org/wiki/Hawksbill_sea_turtle), [**Jazzy** Jalisco](https://en.wikipedia.org/wiki/Jalisco_mud_turtle) and so on). However a few years back, the ROS project released a breaking change that remodelled a lot of the underlying architecture, this *version* is now formally called ROS2 and no longer just ROS, and it's what we are using in this project. For the sake of simplicity we will refer to these ROS2 versions as ROS, but be warned that tutorials from the original ROS, are not fully translatable to how modern ROS(2) works. So, if you are diving deeper into this topic and are trying to find further readings, make sure that the material is about ROS2 (and ideally the two most recent LTS versions "Humble" and "Jazzy") and not the original ROS. 
+{{% /notice %}}
+
+
 You are welcome to only take a look at some of these, or watch all of them. Not for every task in the semester there is a need to know every bit of what's explained in this tutorial, but having a general grasp on how things work is quite useful. 
