@@ -112,5 +112,21 @@ It is important that we should not create packages within other packages, as thi
 
 We have now created two ROS2 packages, one of them is called `ros2-sample-package-cmake` and the other `ros2-sample-package-python`. Now we will proceed with taking a look at what these packages are composed of. 
 
+{{< tabs >}}
+{{% tab name="Python (ament_python)" %}}
+- Within the folder resources, there is a empty file called exactly like the package it is build in. Even tough this file is empty, it's quite important and cant be deleted! When running, ROS2 needs to check what packages are installed, this file serves as the "marker" file that ROS2 can search for to see that the package is installed. It's empty, and will almost alwyas stay empty, but it is there for a reason and cant be removed. 
+- The folder with the same name as the package contains the `__init__.py` file, that let's the python interpreter know that this is a package and it can be imported in a different context. This is the place were you will put the python files containing the actual application code. 
+- Within `test`, there are some default test for checking flake8 compatibility, the linter that both we and the ROS2 project uses, as well as for the correct license formatting. You may delete these files, but putting tests in here is generally quite useful.
+- The LICENSE file keeps the LICENSE for the package, that was set when creating it using the ROS2 command line utility.
+
+The more interesting content can be found in the three files in the directory, `package.xml`, `setup.cfg` and `setup.py`. These contain the information that is actually relevant to the package and where a lot of the configuration of a package can happen. To understand them, be reminded that packages with ROS are very much meant to be shared across teams, labs and companies. Some of the information that is specified here, is only describing the packge to a registry that other people can then search, if you decide to upload your package. 
+
+- `package.xml` contains all the information that you can find if you search the ROS2 package registry. The name that is specified here, should be the same as the name of the folder that the whole package is in. Th version can also be defined by the author of the package, same goes for description and the linked email address, used to follow up with the authors in case of problems. More interestingly, the section "build_depend" declares the dependencys that are required by the project. Be aware that this does not refer to Python packages or C++ header files, this references other ROS2 packages. In the case of our package, as we don't require another ROS2 package as a reference, this is empty for now. "test_depend" is a similar nominator, for describing the dependency on a standard ROS2 test command, or any other test package that is required for running unit tests used within the package you are describing. A powerful tool is the "export" keyword, you can use this as a container for exporting additional information, for example which type of build system is to be used. 
+- ``
+{{% /tab %}}
+{{% tab name="C/C++ (ament_cmake)" %}}
+You will have to use VIm inside of the container that you are running. Luckily it is already installed, so there is no configuration required! 
+{{% /tab %}}
+{{< /tabs >}}
 
 #### The build system

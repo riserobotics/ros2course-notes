@@ -12,22 +12,22 @@
     <title>Nodes &amp; Packages :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1758975647" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1758975647" rel="stylesheet">
-    <link href="/css/hybrid.css?1758975647" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1758975647" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1758975647" rel="stylesheet">
-    <link href="/css/auto-complete.css?1758975647" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1758975647" rel="stylesheet">
-    <link href="/css/theme.css?1758975647" rel="stylesheet">
-    <link href="/css/tabs.css?1758975647" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1758975647" rel="stylesheet">
+    <link href="/css/nucleus.css?1759005849" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1759005849" rel="stylesheet">
+    <link href="/css/hybrid.css?1759005849" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1759005849" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1759005849" rel="stylesheet">
+    <link href="/css/auto-complete.css?1759005849" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1759005849" rel="stylesheet">
+    <link href="/css/theme.css?1759005849" rel="stylesheet">
+    <link href="/css/tabs.css?1759005849" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1759005849" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1758975647" rel="stylesheet">
+    <link href="/css/theme-blue.css?1759005849" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1758975647"></script>
+    <script src="/js/jquery-3.3.1.min.js?1759005849"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1758975647"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1758975647"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1759005849"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1759005849"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1758975647"></script>
+<script type="text/javascript" src="/js/search.js?1759005849"></script>
 
     
   </div>
@@ -479,6 +479,51 @@ If you want to learn more about what forking means, see <a href="https://docs.gi
 </span></span><span style="display:flex;"><span>└── tests
 </span></span><span style="display:flex;"><span>    └── __pycache__
 </span></span></code></pre></div><p>We have now created two ROS2 packages, one of them is called <code>ros2-sample-package-cmake</code> and the other <code>ros2-sample-package-python</code>. Now we will proceed with taking a look at what these packages are composed of.</p>
+
+
+<div class="tab-panel">
+    <div class="tab-nav">
+    
+        <button
+          data-tab-item="Python (ament_python)"
+          data-tab-group="default"
+          class="tab-nav-button btn active"
+          onclick="switchTab('default','Python (ament_python)')"
+         >Python (ament_python)</button>
+    
+        <button
+          data-tab-item="C/C&#43;&#43; (ament_cmake)"
+          data-tab-group="default"
+          class="tab-nav-button btn "
+          onclick="switchTab('default','C\/C\u002b\u002b (ament_cmake)')"
+         >C/C&#43;&#43; (ament_cmake)</button>
+    
+    </div>
+    <div class="tab-content">
+        
+        <div data-tab-item="Python (ament_python)" data-tab-group="default" class="tab-item active">
+            <ul>
+<li>Within the folder resources, there is a empty file called exactly like the package it is build in. Even tough this file is empty, it&rsquo;s quite important and cant be deleted! When running, ROS2 needs to check what packages are installed, this file serves as the &ldquo;marker&rdquo; file that ROS2 can search for to see that the package is installed. It&rsquo;s empty, and will almost alwyas stay empty, but it is there for a reason and cant be removed.</li>
+<li>The folder with the same name as the package contains the <code>__init__.py</code> file, that let&rsquo;s the python interpreter know that this is a package and it can be imported in a different context. This is the place were you will put the python files containing the actual application code.</li>
+<li>Within <code>test</code>, there are some default test for checking flake8 compatibility, the linter that both we and the ROS2 project uses, as well as for the correct license formatting. You may delete these files, but putting tests in here is generally quite useful.</li>
+<li>The LICENSE file keeps the LICENSE for the package, that was set when creating it using the ROS2 command line utility.</li>
+</ul>
+<p>The more interesting content can be found in the three files in the directory, <code>package.xml</code>, <code>setup.cfg</code> and <code>setup.py</code>. These contain the information that is actually relevant to the package and where a lot of the configuration of a package can happen. To understand them, be reminded that packages with ROS are very much meant to be shared across teams, labs and companies. Some of the information that is specified here, is only describing the packge to a registry that other people can then search, if you decide to upload your package.</p>
+<ul>
+<li><code>package.xml</code> contains all the information that you can find if you search the ROS2 package registry. The name that is specified here, should be the same as the name of the folder that the whole package is in. Th version can also be defined by the author of the package, same goes for description and the linked email address, used to follow up with the authors in case of problems. More interestingly, the section &ldquo;build_depend&rdquo; declares the dependencys that are required by the project. Be aware that this does not refer to Python packages or C++ header files, this references other ROS2 packages. In the case of our package, as we don&rsquo;t require another ROS2 package as a reference, this is empty for now. &ldquo;test_depend&rdquo; is a similar nominator, for describing the dependency on a standard ROS2 test command, or any other test package that is required for running unit tests used within the package you are describing. A powerful tool is the &ldquo;export&rdquo; keyword, you can use this as a container for exporting additional information, for example which type of build system is to be used.</li>
+<li>``</li>
+</ul>
+
+        </div>
+        
+        <div data-tab-item="C/C&#43;&#43; (ament_cmake)" data-tab-group="default" class="tab-item ">
+            <p>You will have to use VIm inside of the container that you are running. Luckily it is already installed, so there is no configuration required!</p>
+
+        </div>
+        
+    </div>
+</div>
+
 <h4 id="the-build-system">The build system</h4>
 
 
@@ -682,16 +727,16 @@ If you want to learn more about what forking means, see <a href="https://docs.gi
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1758975647"></script>
-    <script src="/js/perfect-scrollbar.min.js?1758975647"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1758975647"></script>
-    <script src="/js/jquery.sticky.js?1758975647"></script>
-    <script src="/js/featherlight.min.js?1758975647"></script>
-    <script src="/js/highlight.pack.js?1758975647"></script>
+    <script src="/js/clipboard.min.js?1759005849"></script>
+    <script src="/js/perfect-scrollbar.min.js?1759005849"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1759005849"></script>
+    <script src="/js/jquery.sticky.js?1759005849"></script>
+    <script src="/js/featherlight.min.js?1759005849"></script>
+    <script src="/js/highlight.pack.js?1759005849"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1758975647"></script>
-    <script src="/js/learn.js?1758975647"></script>
-    <script src="/js/hugo-learn.js?1758975647"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1759005849"></script>
+    <script src="/js/learn.js?1759005849"></script>
+    <script src="/js/hugo-learn.js?1759005849"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
