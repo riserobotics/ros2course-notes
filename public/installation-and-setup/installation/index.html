@@ -12,22 +12,22 @@
     <title>Installation :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1758966118" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1758966118" rel="stylesheet">
-    <link href="/css/hybrid.css?1758966118" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1758966118" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1758966118" rel="stylesheet">
-    <link href="/css/auto-complete.css?1758966118" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1758966118" rel="stylesheet">
-    <link href="/css/theme.css?1758966118" rel="stylesheet">
-    <link href="/css/tabs.css?1758966118" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1758966118" rel="stylesheet">
+    <link href="/css/nucleus.css?1758975647" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1758975647" rel="stylesheet">
+    <link href="/css/hybrid.css?1758975647" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1758975647" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1758975647" rel="stylesheet">
+    <link href="/css/auto-complete.css?1758975647" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1758975647" rel="stylesheet">
+    <link href="/css/theme.css?1758975647" rel="stylesheet">
+    <link href="/css/tabs.css?1758975647" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1758975647" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1758966118" rel="stylesheet">
+    <link href="/css/theme-blue.css?1758975647" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1758966118"></script>
+    <script src="/js/jquery-3.3.1.min.js?1758975647"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1758966118"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1758966118"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1758975647"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1758975647"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1758966118"></script>
+<script type="text/javascript" src="/js/search.js?1758975647"></script>
 
     
   </div>
@@ -210,6 +210,48 @@
       <li data-nav-id="/ros2-concepts/what-is-robot-programming/" title="What is robot programming?" class="dd-item ">
         <a href="/ros2-concepts/what-is-robot-programming/">
         What is robot programming?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-nodes/" title="Nodes &amp; Packages" class="dd-item ">
+        <a href="/ros2-concepts/ros2-nodes/">
+        Nodes &amp; Packages
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-communication-nodes/" title="Communication between nodes" class="dd-item ">
+        <a href="/ros2-concepts/ros2-communication-nodes/">
+        Communication between nodes
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -397,7 +439,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull ghcr.io/riserobotics/rise-docker-ros2-container:main
 </span></span></code></pre></div><h4 id="launching-the-rise-ros2-container">Launching the RISE ROS2 Container</h4>
 
-<div class="notices tip" ><p>You will have to do the following steps every time you shut-down/sleep your computer. If you are unsure if a container is still active, either take a look at the &ldquo;Containers&rdquo; menu in the Docker Desktop GUI in the left sidebar, or execute the following command to <em>stop all images</em>! Be sure that this is what you want to do! <code>docker stop $(docker ps -q)</code>. If you want to <em>remove</em> all containers as well, run the same command with <code>rm $(docker ps -aq)</code> attached to the back.</p>
+<div class="notices tip" ><p>You will have to do the following steps every time you shut-down/sleep your computer. If you are unsure if a container is still active, either take a look at the &ldquo;Containers&rdquo; menu in the Docker Desktop GUI in the left sidebar, or execute the following command to <em>stop all images</em>! Be sure that this is what you want to do! <code>docker stop [name of the docker container here]</code>. If you want to <em>remove</em> all containers as well, run the same command with <code>docker rm [name of the docker container here]</code> attached to the back.</p>
 </div>
 
 <p>Now it&rsquo;s time to launch the container we just downloaded. This can be done either via the command line, which is the preferred way, or using the Docker Desktop GUI if you feel more comfortable this way.</p>
@@ -425,9 +467,11 @@
         
         <div data-tab-item="Command line interface" data-tab-group="default" class="tab-item active">
             <p>You can run the pulled image using the following command, executed in the same terminal as where you pulled the image!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name rise_container ghcr.io/riserobotics/rise-docker-ros2-container:main
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name rise_container ghcr.io/riserobotics/rise-docker-ros2-container:main sleep infinity
 </span></span></code></pre></div><p>The container is now running in the background, and you can jump into it using the following command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it rise_container bash
+</span></span></code></pre></div><p>To get to home type the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
 </span></span></code></pre></div>
         </div>
         
@@ -442,11 +486,7 @@
     </div>
 </div>
 
-<h4 id="cloning-the-repository-for-code-examples">Cloning the repository for code examples</h4>
-<p>As addition to this tutorial series, we also provide a set of ROS2 code examples that help to visualize the workings of the framework. These code snippets and notebooks live in a repository <a href="https://github.com/riserobotics/ros2course">here</a>.</p>
-<p>Clone these into the container you just installed. To do this, jump into the terminal session that is connected to your container and execute</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/riserobotics/ros2course
-</span></span></code></pre></div><h4 id="installing-a-code-editor">Installing a code editor</h4>
+<h4 id="installing-a-code-editor">Installing a code editor</h4>
 
 <div class="notices tip" ><p>You are free to use a different code editor, perhaps you already have your favorite editor installed anyways! However, be warned that we will only provide help if you use VSCode or Vim. If you want to use another editor, it is your responsibility to figure out how to connect containers, and make sure they work robustly.</p>
 </div>
@@ -627,6 +667,38 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -661,16 +733,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1758966118"></script>
-    <script src="/js/perfect-scrollbar.min.js?1758966118"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1758966118"></script>
-    <script src="/js/jquery.sticky.js?1758966118"></script>
-    <script src="/js/featherlight.min.js?1758966118"></script>
-    <script src="/js/highlight.pack.js?1758966118"></script>
+    <script src="/js/clipboard.min.js?1758975647"></script>
+    <script src="/js/perfect-scrollbar.min.js?1758975647"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1758975647"></script>
+    <script src="/js/jquery.sticky.js?1758975647"></script>
+    <script src="/js/featherlight.min.js?1758975647"></script>
+    <script src="/js/highlight.pack.js?1758975647"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1758966118"></script>
-    <script src="/js/learn.js?1758966118"></script>
-    <script src="/js/hugo-learn.js?1758966118"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1758975647"></script>
+    <script src="/js/learn.js?1758975647"></script>
+    <script src="/js/hugo-learn.js?1758975647"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

@@ -35,7 +35,7 @@ docker pull ghcr.io/riserobotics/rise-docker-ros2-container:main
 #### Launching the RISE ROS2 Container
 
 {{% notice tip %}}
-You will have to do the following steps every time you shut-down/sleep your computer. If you are unsure if a container is still active, either take a look at the "Containers" menu in the Docker Desktop GUI in the left sidebar, or execute the following command to _stop all images_! Be sure that this is what you want to do! `docker stop $(docker ps -q)`. If you want to _remove_ all containers as well, run the same command with `rm $(docker ps -aq)` attached to the back. 
+You will have to do the following steps every time you shut-down/sleep your computer. If you are unsure if a container is still active, either take a look at the "Containers" menu in the Docker Desktop GUI in the left sidebar, or execute the following command to _stop all images_! Be sure that this is what you want to do! `docker stop [name of the docker container here]`. If you want to _remove_ all containers as well, run the same command with `docker rm [name of the docker container here]` attached to the back. 
 {{% /notice %}}
 
 Now it's time to launch the container we just downloaded. This can be done either via the command line, which is the preferred way, or using the Docker Desktop GUI if you feel more comfortable this way. 
@@ -45,13 +45,20 @@ Now it's time to launch the container we just downloaded. This can be done eithe
 You can run the pulled image using the following command, executed in the same terminal as where you pulled the image!
 
 ```bash
-docker run -d --name rise_container ghcr.io/riserobotics/rise-docker-ros2-container:main
+docker run -d --name rise_container ghcr.io/riserobotics/rise-docker-ros2-container:main sleep infinity
 ```
 The container is now running in the background, and you can jump into it using the following command:
 
 ```bash
 docker exec -it rise_container bash
 ```
+
+To get to home type the following:
+
+```bash
+cd ~
+```
+
 {{% /tab %}}
 {{% tab name="Docker Desktop GUI" %}}
 Running the container from the DOcker Desktop GUI is quite simple! Navigate to the "Images" menu in the left sidebar and find the container "ghcr.io/riserobotics/rise-docker-docs-container". Use the "Play" symbol at the end of line to start the container. In the following context menu, simply select "Run". 
@@ -66,15 +73,6 @@ docker exec -it rise_container bash
 
 {{% /tab %}}
 {{< /tabs >}}
-
-#### Cloning the repository for code examples
-As addition to this tutorial series, we also provide a set of ROS2 code examples that help to visualize the workings of the framework. These code snippets and notebooks live in a repository [here](https://github.com/riserobotics/ros2course). 
-
-Clone these into the container you just installed. To do this, jump into the terminal session that is connected to your container and execute
-
-```bash
-git clone https://github.com/riserobotics/ros2course
-```
 
 
 #### Installing a code editor

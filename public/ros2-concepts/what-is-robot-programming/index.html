@@ -12,22 +12,22 @@
     <title>What is robot programming? :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1758966118" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1758966118" rel="stylesheet">
-    <link href="/css/hybrid.css?1758966118" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1758966118" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1758966118" rel="stylesheet">
-    <link href="/css/auto-complete.css?1758966118" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1758966118" rel="stylesheet">
-    <link href="/css/theme.css?1758966118" rel="stylesheet">
-    <link href="/css/tabs.css?1758966118" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1758966118" rel="stylesheet">
+    <link href="/css/nucleus.css?1758975647" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1758975647" rel="stylesheet">
+    <link href="/css/hybrid.css?1758975647" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1758975647" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1758975647" rel="stylesheet">
+    <link href="/css/auto-complete.css?1758975647" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1758975647" rel="stylesheet">
+    <link href="/css/theme.css?1758975647" rel="stylesheet">
+    <link href="/css/tabs.css?1758975647" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1758975647" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1758966118" rel="stylesheet">
+    <link href="/css/theme-blue.css?1758975647" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1758966118"></script>
+    <script src="/js/jquery-3.3.1.min.js?1758975647"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1758966118"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1758966118"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1758975647"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1758975647"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1758966118"></script>
+<script type="text/javascript" src="/js/search.js?1758975647"></script>
 
     
   </div>
@@ -210,6 +210,48 @@
       <li data-nav-id="/ros2-concepts/what-is-robot-programming/" title="What is robot programming?" class="dd-item active">
         <a href="/ros2-concepts/what-is-robot-programming/">
         What is robot programming?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-nodes/" title="Nodes &amp; Packages" class="dd-item ">
+        <a href="/ros2-concepts/ros2-nodes/">
+        Nodes &amp; Packages
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-communication-nodes/" title="Communication between nodes" class="dd-item ">
+        <a href="/ros2-concepts/ros2-communication-nodes/">
+        Communication between nodes
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -378,10 +420,6 @@
 </li>
 </ul>
 <p>When building robotic software, we therefore want to follow this physical principle of modularization. A robot is a collection of different components that are connect together by the means of a communication network, mechanical connections and an electrical distribution network - our robotic software is a collection of different software processes that are connected together using a common communication standard on a communication network.</p>
-<h4 id="nodes-and-the-communication-between-them">Nodes and the communication between them</h4>
-<p>We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a <strong>node</strong>. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.</p>
-<p>Obviously a robot is not just one single camera, or a single actuator. A real robotic system would be comprised of many different nodes, that each serve a very different task. Also, there may be multiple nodes that can be attributed to a common purpose, i.e. there might be a node housing the camera driver and another node housing a computer vision algorithm. Together they allow us to use the hardware capabilities of the physical device in the software system we are building. To order this, ROS allows us to put multiple nodes together into a folder so that they form a <strong>package</strong>. As there may be many different people using the particular camera, we can share these packages on a packet exchange called <code>rosdep</code>, similarly to how pypi for python packages and apt for debian applications works. We will learn more about this in <a href="/ros2-ecosystem/">Chapter V</a>.</p>
-<p>To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a communication system so that different nodes can communicate with another.</p>
 
 
 <footer class="footline">
@@ -515,6 +553,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -523,8 +577,24 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
                         
-                        
+            
+            
+                
                     
                 
                 
@@ -552,16 +622,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1758966118"></script>
-    <script src="/js/perfect-scrollbar.min.js?1758966118"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1758966118"></script>
-    <script src="/js/jquery.sticky.js?1758966118"></script>
-    <script src="/js/featherlight.min.js?1758966118"></script>
-    <script src="/js/highlight.pack.js?1758966118"></script>
+    <script src="/js/clipboard.min.js?1758975647"></script>
+    <script src="/js/perfect-scrollbar.min.js?1758975647"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1758975647"></script>
+    <script src="/js/jquery.sticky.js?1758975647"></script>
+    <script src="/js/featherlight.min.js?1758975647"></script>
+    <script src="/js/highlight.pack.js?1758975647"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1758966118"></script>
-    <script src="/js/learn.js?1758966118"></script>
-    <script src="/js/hugo-learn.js?1758966118"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1758975647"></script>
+    <script src="/js/learn.js?1758975647"></script>
+    <script src="/js/hugo-learn.js?1758975647"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
