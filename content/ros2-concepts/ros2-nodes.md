@@ -122,16 +122,15 @@ def main(args=None):
 
 Now your ROS2 sample node is runnable and can be executed! However, there is currently no way for ROS2 to discover the node or to understand our keyboard inputs that this node is to be run. Also, we have used `rclpy` in this code, and have to specify this as a dependency of the package where the node is contained in. To add these, navigate back to the package root directory where you will find `package.xml` and `setup.py`.
 
-Within `package.xml` we will have to note `rclpy` as a dependency of the package, do this by adding an `exec_depend` tag into the file, which should looks something like this afterwards:
-
+Within `package.xml` we will have to note `rclpy` as a dependency of the package, do this by adding an `exec_depend` tag into the file, which should look something like this afterwards. While we are at it, also change the `version`, `description` and `maintainer` tags to fit with a name and a sample email. 
 ```xml
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>ros2-sample-package-python</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="root@todo.todo">root</maintainer>
+  <version>0.1.0</version>
+  <description>This is some description</description>
+  <maintainer email="maintainer@someorg.com">Maintainer Name</maintainer>
   <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>
@@ -147,4 +146,16 @@ Within `package.xml` we will have to note `rclpy` as a dependency of the package
 </package>
 ```
 
-While we are at it, also change the `version`, `description` and `maintainer` tags to fit with a name and a sample email. 
+We have to define an entry point into the node, that specify to the ROS2 command line tools where a command should execute a node. To do this, open up the `setup.py` file. Here you find the section `entry_points`. What is mean twith entry points, is the shortcode that you call using the ROS2 CLI to execute that node. After building, which is described in the next chapter, you will be able to call the ROS2 command line interface with something like `ros2 run package entry_point`, specifying what `entry_point` should be is the purpose of this file. To make a testrun possible add this to the setup.py.
+
+```python
+entry_points={
+        'console_scripts': [
+                'test_our_node = ros2-sample-package-python.sample_node:main',
+        ],
+},
+```
+
+By doing this we specify the entry point `test_our_node`, this means we will be able to call `ros2 run packageNameHere test_our_node` after building this package. The line is always structured in the same way, first we define the entry_point denominator, which must be unique within that package. Then we write the package name, and with a dot after that the file name in which we defined our node. With ':' we seperate that file name from the name of the function that we desginted to run ou node, which will most often be `main` but it could be any other function in which we call `rclpy.init()`. If we were to change the line to `'nodetesting = ros2-sample-package-python.sample_node:main'` the node would be launched with the commadn `ros2 run packageNameHere nodetesting`.
+
+Now we are done with defining the node. before we can execute it however, we will have to build the package that the node is contained in and set our workspace up for executing it. This will be handled in the [next](/ros2-concepts/ros2-build-system) tutorial. 

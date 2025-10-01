@@ -12,22 +12,22 @@
     <title>Creating nodes :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1759343617" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1759343617" rel="stylesheet">
-    <link href="/css/hybrid.css?1759343617" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1759343617" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1759343617" rel="stylesheet">
-    <link href="/css/auto-complete.css?1759343617" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1759343617" rel="stylesheet">
-    <link href="/css/theme.css?1759343617" rel="stylesheet">
-    <link href="/css/tabs.css?1759343617" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1759343617" rel="stylesheet">
+    <link href="/css/nucleus.css?1759344579" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1759344579" rel="stylesheet">
+    <link href="/css/hybrid.css?1759344579" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1759344579" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1759344579" rel="stylesheet">
+    <link href="/css/auto-complete.css?1759344579" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1759344579" rel="stylesheet">
+    <link href="/css/theme.css?1759344579" rel="stylesheet">
+    <link href="/css/tabs.css?1759344579" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1759344579" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1759343617" rel="stylesheet">
+    <link href="/css/theme-blue.css?1759344579" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1759343617"></script>
+    <script src="/js/jquery-3.3.1.min.js?1759344579"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1759343617"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1759343617"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1759344579"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1759344579"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1759343617"></script>
+<script type="text/javascript" src="/js/search.js?1759344579"></script>
 
     
   </div>
@@ -502,14 +502,14 @@ The avaliability of this client library also determines if we can write ROS2 cod
 </span></span><span style="display:flex;"><span>        sample_node<span style="color:#f92672">.</span>destroy_node()
 </span></span><span style="display:flex;"><span>        rclpy<span style="color:#f92672">.</span>shutdown()
 </span></span></code></pre></div><p>Now your ROS2 sample node is runnable and can be executed! However, there is currently no way for ROS2 to discover the node or to understand our keyboard inputs that this node is to be run. Also, we have used <code>rclpy</code> in this code, and have to specify this as a dependency of the package where the node is contained in. To add these, navigate back to the package root directory where you will find <code>package.xml</code> and <code>setup.py</code>.</p>
-<p>Within <code>package.xml</code> we will have to note <code>rclpy</code> as a dependency of the package, do this by adding an <code>exec_depend</code> tag into the file, which should looks something like this afterwards:</p>
+<p>Within <code>package.xml</code> we will have to note <code>rclpy</code> as a dependency of the package, do this by adding an <code>exec_depend</code> tag into the file, which should look something like this afterwards. While we are at it, also change the <code>version</code>, <code>description</code> and <code>maintainer</code> tags to fit with a name and a sample email.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml-model href=&#34;http://download.ros.org/schema/package_format3.xsd&#34; schematypens=&#34;http://www.w3.org/2001/XMLSchema&#34;?&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">format=</span><span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;name&gt;</span>ros2-sample-package-python<span style="color:#f92672">&lt;/name&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;version&gt;</span>0.0.0<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;description&gt;</span>TODO: Package description<span style="color:#f92672">&lt;/description&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;maintainer</span> <span style="color:#a6e22e">email=</span><span style="color:#e6db74">&#34;root@todo.todo&#34;</span><span style="color:#f92672">&gt;</span>root<span style="color:#f92672">&lt;/maintainer&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;version&gt;</span>0.1.0<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;description&gt;</span>This is some description<span style="color:#f92672">&lt;/description&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;maintainer</span> <span style="color:#a6e22e">email=</span><span style="color:#e6db74">&#34;maintainer@someorg.com&#34;</span><span style="color:#f92672">&gt;</span>Maintainer Name<span style="color:#f92672">&lt;/maintainer&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;license&gt;</span>Apache-2.0<span style="color:#f92672">&lt;/license&gt;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;test_depend&gt;</span>ament_copyright<span style="color:#f92672">&lt;/test_depend&gt;</span>
@@ -523,7 +523,14 @@ The avaliability of this client library also determines if we can write ROS2 cod
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;build_type&gt;</span>ament_python<span style="color:#f92672">&lt;/build_type&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/export&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/package&gt;</span>
-</span></span></code></pre></div><p>While we are at it, also change the <code>version</code>, <code>description</code> and <code>maintainer</code> tags to fit with a name and a sample email.</p>
+</span></span></code></pre></div><p>We have to define an entry point into the node, that specify to the ROS2 command line tools where a command should execute a node. To do this, open up the <code>setup.py</code> file. Here you find the section <code>entry_points</code>. What is mean twith entry points, is the shortcode that you call using the ROS2 CLI to execute that node. After building, which is described in the next chapter, you will be able to call the ROS2 command line interface with something like <code>ros2 run package entry_point</code>, specifying what <code>entry_point</code> should be is the purpose of this file. To make a testrun possible add this to the setup.py.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>entry_points<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;console_scripts&#39;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;test_our_node = ros2-sample-package-python.sample_node:main&#39;</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>},
+</span></span></code></pre></div><p>By doing this we specify the entry point <code>test_our_node</code>, this means we will be able to call <code>ros2 run packageNameHere test_our_node</code> after building this package. The line is always structured in the same way, first we define the entry_point denominator, which must be unique within that package. Then we write the package name, and with a dot after that the file name in which we defined our node. With &lsquo;:&rsquo; we seperate that file name from the name of the function that we desginted to run ou node, which will most often be <code>main</code> but it could be any other function in which we call <code>rclpy.init()</code>. If we were to change the line to <code>'nodetesting = ros2-sample-package-python.sample_node:main'</code> the node would be launched with the commadn <code>ros2 run packageNameHere nodetesting</code>.</p>
+<p>Now we are done with defining the node. before we can execute it however, we will have to build the package that the node is contained in and set our workspace up for executing it. This will be handled in the <a href="/ros2-concepts/ros2-build-system">next</a> tutorial.</p>
 
 
 <footer class="footline">
@@ -758,16 +765,16 @@ The avaliability of this client library also determines if we can write ROS2 cod
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1759343617"></script>
-    <script src="/js/perfect-scrollbar.min.js?1759343617"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1759343617"></script>
-    <script src="/js/jquery.sticky.js?1759343617"></script>
-    <script src="/js/featherlight.min.js?1759343617"></script>
-    <script src="/js/highlight.pack.js?1759343617"></script>
+    <script src="/js/clipboard.min.js?1759344579"></script>
+    <script src="/js/perfect-scrollbar.min.js?1759344579"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1759344579"></script>
+    <script src="/js/jquery.sticky.js?1759344579"></script>
+    <script src="/js/featherlight.min.js?1759344579"></script>
+    <script src="/js/highlight.pack.js?1759344579"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1759343617"></script>
-    <script src="/js/learn.js?1759343617"></script>
-    <script src="/js/hugo-learn.js?1759343617"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1759344579"></script>
+    <script src="/js/learn.js?1759344579"></script>
+    <script src="/js/hugo-learn.js?1759344579"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

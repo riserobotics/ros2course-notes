@@ -132,4 +132,4 @@ The only other interesting file is `CMakeLists.txt`, the file that defines the b
 {{% /tab %}}
 {{< /tabs >}}
 
-We have now set up a ROS2 package inside the Docker container. Commit your local changes to the repository, to make sure that they can be versioned correctly and referenced by others. If that is completed, move on to the next page, [here](/ros2-concepts//ros2-nodes).
+We have now set up a ROS2 package inside the Docker container. Commit your local changes to the repository, to make sure that they can be versioned correctly and referenced by others. If that is completed, move on to the next page, [here](/ros2-concepts/ros2-nodes).
