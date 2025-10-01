@@ -23,11 +23,18 @@
       <description>&lt;h4 id=&#34;a-little-bit-of-history&#34;&gt;A little bit of History!&lt;/h4&gt;&#xA;&lt;p&gt;ROS stands for Robot Operating System, yet it is not an operating system. Most accurately, we may describe ROS2 as a collection of tools, libraries, middleware and a community of packages that can be used to control some robots. The federated structure, and the modular nature of the system allows users to interchange software packages inbetween projects, and make components reusable.&lt;/p&gt;&#xA;&lt;p&gt;Traditionally this was, and still is not always the most straight forward approach. Robots are by nature quite heterogenous machines, in that two robots must not share any two components or even remotely look alike. This makes robot programming hard and equally heterogenous, people and companies usually started by developing robot software specifically tailored to their own needs, which is in many cases the right approach for companies with large R&amp;amp;D budgets and many people involved in development.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Nodes &amp; Packages</title>
+      <title>Preparing packages</title>
+      <link>http://localhost:1313/ros2-concepts/ros2-packages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ros2-concepts/ros2-packages/</guid>
+      <description>&lt;h4 id=&#34;how-ros2-structures-code&#34;&gt;How ROS2 structures code&lt;/h4&gt;&#xA;&lt;p&gt;We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a &lt;strong&gt;node&lt;/strong&gt;. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Creating nodes</title>
       <link>http://localhost:1313/ros2-concepts/ros2-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/ros2-concepts/ros2-nodes/</guid>
-      <description>&lt;h4 id=&#34;the-ros2-node-concept&#34;&gt;The ROS2 node concept&lt;/h4&gt;&#xA;&lt;p&gt;We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a &lt;strong&gt;node&lt;/strong&gt;. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.&lt;/p&gt;</description>
+      <description>&lt;h4 id=&#34;building-a-ros2-node&#34;&gt;Building a ROS2 Node&lt;/h4&gt;&#xA;&lt;p&gt;In this part of the tutorial series we want to specify an individual ROS2 node, and get an idea of how it looks like. As most of the functionality of ROS2 is centered around nodes, this tutorial is not encompassing all parts of Nodes. We will not get into executors, launch files and similar topics. These will have to wait until later. For now, the goal is to understand from a high-level perspective how Nodes work, and what you can do with them. Everything that goes on under the hood is a topic for a later chapter of this series.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Communication between nodes</title>
@@ -35,6 +42,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</guid>
       <description>&lt;p&gt;To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a &lt;strong&gt;communication system&lt;/strong&gt; so that different nodes can communicate with another. This communication system, also somethimes referred to as a data-distribution layer, will send information between different processes at runtime.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The colcon build system</title>
+      <link>http://localhost:1313/ros2-concepts/ros2-build-system/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ros2-concepts/ros2-build-system/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

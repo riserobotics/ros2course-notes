@@ -9,25 +9,25 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Nodes &amp; Packages :: My New Hugo Site</title>
+    <title>Creating nodes :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1759005849" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1759005849" rel="stylesheet">
-    <link href="/css/hybrid.css?1759005849" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1759005849" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1759005849" rel="stylesheet">
-    <link href="/css/auto-complete.css?1759005849" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1759005849" rel="stylesheet">
-    <link href="/css/theme.css?1759005849" rel="stylesheet">
-    <link href="/css/tabs.css?1759005849" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1759005849" rel="stylesheet">
+    <link href="/css/nucleus.css?1759343617" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1759343617" rel="stylesheet">
+    <link href="/css/hybrid.css?1759343617" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1759343617" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1759343617" rel="stylesheet">
+    <link href="/css/auto-complete.css?1759343617" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1759343617" rel="stylesheet">
+    <link href="/css/theme.css?1759343617" rel="stylesheet">
+    <link href="/css/tabs.css?1759343617" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1759343617" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1759005849" rel="stylesheet">
+    <link href="/css/theme-blue.css?1759343617" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1759005849"></script>
+    <script src="/js/jquery-3.3.1.min.js?1759343617"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1759005849"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1759005849"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1759343617"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1759343617"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1759005849"></script>
+<script type="text/javascript" src="/js/search.js?1759343617"></script>
 
     
   </div>
@@ -228,9 +228,30 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/ros2-nodes/" title="Nodes &amp; Packages" class="dd-item active">
+      <li data-nav-id="/ros2-concepts/ros2-packages/" title="Preparing packages" class="dd-item ">
+        <a href="/ros2-concepts/ros2-packages/">
+        Preparing packages
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-nodes/" title="Creating nodes" class="dd-item active">
         <a href="/ros2-concepts/ros2-nodes/">
-        Nodes &amp; Packages
+        Creating nodes
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -252,6 +273,27 @@
       <li data-nav-id="/ros2-concepts/ros2-communication-nodes/" title="Communication between nodes" class="dd-item ">
         <a href="/ros2-concepts/ros2-communication-nodes/">
         Communication between nodes
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts/ros2-build-system/" title="The colcon build system" class="dd-item ">
+        <a href="/ros2-concepts/ros2-build-system/">
+        The colcon build system
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -354,7 +396,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > Nodes & Packages
+            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > Creating nodes
           
         
           
@@ -391,140 +433,97 @@
           
             <h1>
               
-              Nodes &amp; Packages
+              Creating nodes
             </h1>
           
 
         
 
 
-<h4 id="the-ros2-node-concept">The ROS2 node concept</h4>
-<p>We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a <strong>node</strong>. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.</p>
-<p>Obviously a robot is not just one single camera, or a single actuator. A real robotic system would be comprised of many different nodes, that each serve a very different task. Also, there may be multiple nodes that can be attributed to a common purpose, i.e. there might be a node housing the camera driver and another node housing a computer vision algorithm. Together they allow us to use the hardware capabilities of the physical device in the software system we are building. To order this, ROS allows us to put multiple nodes together into a folder so that they form a <strong>package</strong>. As there may be many different people using the particular camera, we can share these packages on a packet exchange called <code>rosdep</code>, similarly to how pypi for python packages and apt for debian applications works. We will learn more about this in <a href="/ros2-ecosystem/">Chapter V</a>.</p>
-<p><img src="/images/ch2-nodes-overview.png" alt="Image 1: Schematic view of the ROS2 node setup"></p>
-<p>We will now set up a ROS project to demonstrate how nodes and packages can be created an used.</p>
-<h4 id="setting-up-the-tutorial-environment">Setting up the Tutorial environment</h4>
-<p>Make sure that you have the ROS container setup like described in the <a href="/installation-and-setup/installation/">tutorial</a> on installing the setup. From now on, we assume that you have the Docker container installed and feel comfortable using it. From this point onwards we will also assume that you execute all code <strong>within</strong> that Docker container and not on the host system. To interact with the container easier, you can open up VScode on the host computer and click on the blue button in the bottom left hand corner. In the resulting drop-down menu, select &ldquo;Attach to a running container&rdquo;. In the following menu select the container you just started. Now, your VScode interface opens up the files in the container, makes the internal terminal run within the container and allows you to execute files in the container.</p>
+<h4 id="building-a-ros2-node">Building a ROS2 Node</h4>
+<p>In this part of the tutorial series we want to specify an individual ROS2 node, and get an idea of how it looks like. As most of the functionality of ROS2 is centered around nodes, this tutorial is not encompassing all parts of Nodes. We will not get into executors, launch files and similar topics. These will have to wait until later. For now, the goal is to understand from a high-level perspective how Nodes work, and what you can do with them. Everything that goes on under the hood is a topic for a later chapter of this series.</p>
+<h4 id="the-client-libraries">The client libraries</h4>
+<p>When we are talking about ROS2 development, or robotic software development with ROS as a whole, we are usually talking about writing <em>application level code</em>. We are not interested in how ROS2 works itself, instead we rely on the <em>Application Programming Interface</em> (API) that it provides, to interact with what is essentially a black box system to us (Even though we will shed light on the inner workings later in this tutorial series).</p>
+<p>ROS2 itself is a binary program installed on your operating system, much the same as Firefox, Thunderbird or Octave. This is the program where all of the actual computation happens, and it is colloquially known as the ROS2-Core. It provides interfaces to other components on your computer, to perform actions.</p>
+<p>The interface that ROS2 itself, the binary that we would install on our computer, provides however is not easy to use! The goal when designing it, was to enable fast, efficient and scalable processes, not to enhance programmer experience. Also, the way one would interact with this, does not follow the order of logical software development for robotics. It is in many ways a <em>deep API</em>, that provides a lot of functionality with few interfaces.</p>
 
-<div class="notices info" ><p>During this course want to use the <code>git</code> version control system, to track changes and progress, and also allow feedback to be given on your work. Therefore, before cloning the repository, fork it to your own account using the following steps.
-Go to GitHub and navigate to the repository, which can be found <a href="https://github.com/riserobotics/ros2course">here</a>. On the top right part of the window, you will find the Button &ldquo;Fork&rdquo;. After you press that button, a context menu will open. make sure that the dropdown menu under &ldquo;Owner&rdquo; is set to your private GitHub account, i.e. the account that has your account name <em>not</em> &ldquo;riserobotics&rdquo;. The repository name will be pre set to &ldquo;ros2course&rdquo;, we recommend keeping it this way. The same goes for the description, there is no real need to change it. Before clicking on &ldquo;Create fork&rdquo; make sure to uncheck the checkbox &ldquo;Copy the main branch only&rdquo;, to make sure that all branches of the repository are forked.
-If you want to learn more about what forking means, see <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">here</a> for some information.</p>
+<div class="notices tip" ><p>Beyond the scope of this tutorial series, if you are interested in some interesting notes on how API&rsquo;s in software could (should?) be designed, see <a href="https://www.youtube.com/watch?v=bmSAYlu0NcY">this</a> excellent talk on the topic. This is not in any way related to robotics, and is not required for this course however, and should be treated as further reading.</p>
 </div>
 
-<p>To begin, jump into the docker container and open up an internal terminal. Then go ahead and clone the forked repository to the docker container. If you choose your own name for the repository, make sure to adjust the link accordingly.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/<span style="color:#f92672">[</span>Insert your  GitHub username here<span style="color:#f92672">]</span>/ros2course
-</span></span></code></pre></div>
-<div class="notices tip" ><p>Depending on jow you set up your GitHub, you may face difficulty authenticating to the service. If you set up <code>ssh</code> based authentification, either import your keys locally to the Docker container which is not recommended as you may share the container with someone and then unwillingly give them access to your keys, or you mount the key as a local volume and give the container access to said volume. For most people however, you will authenticate with <code>https</code> based procedures. To do this, you can either install the github command line utility <code>gh</code>, or create a token from the Developer settings of your account, as password based authentication has been deprecated. You can find tutorials on token based cloning <a href="https://graphite.dev/guides/git-clone-with-token">here</a>, and on setting up the github command line utility <a href="https://cli.github.com/manual/gh_auth_login">here</a>.</p>
-</div>
-
-
-<div class="notices tip" ><p>If you are trying to install <code>gh</code>, know that the Docker container does not have the <code>apt</code> remote repositorie index lists locally, so you will have to run <code>sudo apt update</code> before being able to install anything.</p>
-</div>
-
-<p>Now move inside of the cloned repository using the <code>cd</code> tool</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ros2course
-</span></span></code></pre></div><p>If you type <code>ls</code> to see the contents of the directory, you can see that they are ordered by the different chapters of this tutorial series. As we are in the second chapter, and are working on the first task, move to the directory <code>ch2-1-creating-nodes</code>. Except for a <code>README.md</code> and a subdirectory <code>tests</code>, this should be an empty directory. Here, we want to set up our first ROS project and create some nodes!</p>
-<h4 id="setting-up-the-ros2-workspace">Setting up the ROS2 workspace</h4>
-<p>Every ROS2 project has to run within a ROS2 workspace. At its core the ROS2 workspace is just a folder containing one or more ROS2 packages. Usually we want to create a new folder that will contain this workspace, we are in theory free to choose the name, but it is usually helpful to indicate the purpose of the directory in the name. Create a folder called <code>ros2-node-test-workspace</code> and a folder <code>src</code> within it. Afterwards, move into this folder.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/ros2-node-test-workspace/src
-</span></span><span style="display:flex;"><span>cd ros2-node-test-workspace
-</span></span></code></pre></div><p>The <code>src</code> directory will serve as the home for all our ROS2 packages that we are going to build. Again, in theory we ware not required to put them into the <code>src</code> directory, it is however best practice to do so, making the overall repository structure cleaner and more readable. Up until this point we have not made anything that requires ROS2 yet, all of the tools till now are standard Linux command line tools.</p>
-<h4 id="creating-a-ros2-package">Creating a ROS2 package</h4>
-<p>Our ROS2 workspace is currently empty, lets change that! We can build a package in two ways, either by putting together the required files in a specific structure ourself, or by using the <code>ros2</code> command line utility. Here, we will choose the latter option.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 pkg create --build-type ament_python --license Apache-2.0 ros2-sample-package-python
-</span></span></code></pre></div><p>This command creates the structure of a minimal implementation of an empty package for us, at the point where we ran the command. We define the license as the <code>Apache-2.0</code> license, and we name the package <code>ros2-sample-package</code>. Instead of <code>ros2-sample-package</code> we could have also chosen any other name, that is made up of utf8 characters. <code>--build-type</code> defines the build system that we use for this package. We will get into this later in more detail, for now just note that this sets the programming language that you will use in the package. <code>ament_python</code> will result in this being a python package, <code>ament_cmake</code> results in a C/C++ package. We will create both as an example, so also execute:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 pkg create --build-type ament_cmake --license Apache-2.0 ros2-sample-package-cmake
-</span></span></code></pre></div><p>To check if everything worked as expected, you can run a test using this command. As an alternative, you can see in the tab menu how the directory structure should look:</p>
-
-<div class="expand">
-    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
-        <span>
-        
-    	
-    	Correct directory structure at this point
-    	
-    	</span>
-    </div>
-    <div class="expand-content" style="display: none;">
-        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── ros2-sample-package-cmake
-</span></span><span style="display:flex;"><span>│   ├── include
-</span></span><span style="display:flex;"><span>│   │   └── ros2-sample-package-cmake
-</span></span><span style="display:flex;"><span>│   └── src
-</span></span><span style="display:flex;"><span>├── ros2-sample-package-python
-</span></span><span style="display:flex;"><span>│   ├── resource
-</span></span><span style="display:flex;"><span>│   ├── ros2-sample-package-python
-</span></span><span style="display:flex;"><span>│   │   └── __pycache__
-</span></span><span style="display:flex;"><span>│   └── test
-</span></span><span style="display:flex;"><span>│       └── __pycache__
-</span></span><span style="display:flex;"><span>└── tests
-</span></span><span style="display:flex;"><span>    └── __pycache__
-</span></span></code></pre></div>
-    </div>
-</div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pytest tests/test_structure_correct.py -v
-</span></span></code></pre></div><p>It is important that we should not create packages within other packages, as this will potentially lead to some problems. It is best practice, to make every package at the root of the <code>src</code> directory. See the following for an example of how <strong>not</strong> to do it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── ros2-sample-package-python
-</span></span><span style="display:flex;"><span>│   ├── resource
-</span></span><span style="display:flex;"><span>│   ├── ros2-sample-package-cmake
-</span></span><span style="display:flex;"><span>│   │   ├── include
-</span></span><span style="display:flex;"><span>│   │   │   └── ros2-sample-package-cmake
-</span></span><span style="display:flex;"><span>│   │   └── src
-</span></span><span style="display:flex;"><span>│   ├── ros2-sample-package-python
-</span></span><span style="display:flex;"><span>│   │   └── __pycache__
-</span></span><span style="display:flex;"><span>│   └── test
-</span></span><span style="display:flex;"><span>│       └── __pycache__
-</span></span><span style="display:flex;"><span>└── tests
-</span></span><span style="display:flex;"><span>    └── __pycache__
-</span></span></code></pre></div><p>We have now created two ROS2 packages, one of them is called <code>ros2-sample-package-cmake</code> and the other <code>ros2-sample-package-python</code>. Now we will proceed with taking a look at what these packages are composed of.</p>
-
-
-<div class="tab-panel">
-    <div class="tab-nav">
-    
-        <button
-          data-tab-item="Python (ament_python)"
-          data-tab-group="default"
-          class="tab-nav-button btn active"
-          onclick="switchTab('default','Python (ament_python)')"
-         >Python (ament_python)</button>
-    
-        <button
-          data-tab-item="C/C&#43;&#43; (ament_cmake)"
-          data-tab-group="default"
-          class="tab-nav-button btn "
-          onclick="switchTab('default','C\/C\u002b\u002b (ament_cmake)')"
-         >C/C&#43;&#43; (ament_cmake)</button>
-    
-    </div>
-    <div class="tab-content">
-        
-        <div data-tab-item="Python (ament_python)" data-tab-group="default" class="tab-item active">
-            <ul>
-<li>Within the folder resources, there is a empty file called exactly like the package it is build in. Even tough this file is empty, it&rsquo;s quite important and cant be deleted! When running, ROS2 needs to check what packages are installed, this file serves as the &ldquo;marker&rdquo; file that ROS2 can search for to see that the package is installed. It&rsquo;s empty, and will almost alwyas stay empty, but it is there for a reason and cant be removed.</li>
-<li>The folder with the same name as the package contains the <code>__init__.py</code> file, that let&rsquo;s the python interpreter know that this is a package and it can be imported in a different context. This is the place were you will put the python files containing the actual application code.</li>
-<li>Within <code>test</code>, there are some default test for checking flake8 compatibility, the linter that both we and the ROS2 project uses, as well as for the correct license formatting. You may delete these files, but putting tests in here is generally quite useful.</li>
-<li>The LICENSE file keeps the LICENSE for the package, that was set when creating it using the ROS2 command line utility.</li>
-</ul>
-<p>The more interesting content can be found in the three files in the directory, <code>package.xml</code>, <code>setup.cfg</code> and <code>setup.py</code>. These contain the information that is actually relevant to the package and where a lot of the configuration of a package can happen. To understand them, be reminded that packages with ROS are very much meant to be shared across teams, labs and companies. Some of the information that is specified here, is only describing the packge to a registry that other people can then search, if you decide to upload your package.</p>
-<ul>
-<li><code>package.xml</code> contains all the information that you can find if you search the ROS2 package registry. The name that is specified here, should be the same as the name of the folder that the whole package is in. Th version can also be defined by the author of the package, same goes for description and the linked email address, used to follow up with the authors in case of problems. More interestingly, the section &ldquo;build_depend&rdquo; declares the dependencys that are required by the project. Be aware that this does not refer to Python packages or C++ header files, this references other ROS2 packages. In the case of our package, as we don&rsquo;t require another ROS2 package as a reference, this is empty for now. &ldquo;test_depend&rdquo; is a similar nominator, for describing the dependency on a standard ROS2 test command, or any other test package that is required for running unit tests used within the package you are describing. A powerful tool is the &ldquo;export&rdquo; keyword, you can use this as a container for exporting additional information, for example which type of build system is to be used.</li>
-<li>``</li>
-</ul>
-
-        </div>
-        
-        <div data-tab-item="C/C&#43;&#43; (ament_cmake)" data-tab-group="default" class="tab-item ">
-            <p>You will have to use VIm inside of the container that you are running. Luckily it is already installed, so there is no configuration required!</p>
-
-        </div>
-        
-    </div>
-</div>
-
-<h4 id="the-build-system">The build system</h4>
+<p>To enable us to write application code, i.e. nodes, packages and other structures within ROS2 in a way that makes sense to human robotics programmers, the ROS2 project provides client libraries. These libraries provide us with an abstraction layer to the &ldquo;real&rdquo; ROS2 system, that makes definitions of features easier. In these client libraries, we can find functions to create, start and stop nodes, to send information between nodes, to set parameters and much more. The client library internally translates these requirements into API calls for the actual ROS2 programm, that is running on our computer.
+The avaliability of this client library also determines if we can write ROS2 code in a particular programming language.</p>
+<p>In general all clinet libraries contain the string <code>rcl</code> somewhere in their name, this stands for <em>Ros Client Library</em>. Two core client libraries that we will use are called <code>rclcpp</code> for C++ and <code>rclpy</code> for use with the python programming language. With these two being the most widley used client libraries, there are however ROS2 client libraries for a wide range of programming languages, for example <code>rclc</code> for C, <code>rclrs</code> for Rust and even <code>rclnodejs</code> for interaction with Node.js systems.</p>
+<p><img src="/images/ch2-nodes-black-box.png" alt="Image 2: Schematic view of the ROS2 node setup"></p>
+<p>Another great advantage of the client library system is that we can mix and match programming languages within the same ROS2 project! For example, we can write our high level code controlling overall behaviour of the robot in python using <code>rclpy</code> as it is easier to develop and interate on, and use C++ with <code>rclcpp</code> to develop the performance sensitive parts of the real time control loops for our motors. At the core of our system is the ROS2 core, and the interface that defines how we talk to said core, is implemented in both programming languages, so we can talk to the same core in the same project at the same time.</p>
+<p><img src="/images/ch2-nodes-multiple-client-libraries.png" alt="Image 2: Schematic view of the ROS2 node setup"></p>
+<p>So, in order to tell the core ROS2 installation on our computer what to do, we use the ROS2 client libraries to specify our application level code, i.e. nodes. If you are are looking for documentation on ROS2, you are most likley really looking for documentation on one of the ROS2 client libraries.</p>
+<h4 id="what-is-a-node">What is a node?</h4>
+<p>To make use of a client library and implement a ROS2 feature, let us familiarize ourself with the concept of a node first. Remember that in the introduction, we talked about splitting the project up into several different components, much the same way as the mechanical robot is made up of different parts, i.e. motors, gearboxes, batteries, etc. Every single process in a robot, we will put in a node!</p>
+<p>A node in ROS2 is a fundamental element, that serves a single modular purpose and implements a specific process. A ull robotic system, e.g. the whoel software that is controlling our exoskeleton, is comprised of many nodes that are working together. A node is a self contained process,  and is also executed as one (more on that later!).</p>
+<h4 id="building-a-ros2-node-in-python">Building a ROS2 node in Python</h4>
+<p>We now want to apply this concept to practice, and make a functioning ROS2 node. As it is easier to read and follow for the most part, we will first explain the concept on the example of a ROS2 python node using the <code>rclpy</code> client library.</p>
+<p>First we have to create a new file where the node will live. It is good practice to create a separate file for each node that you are developing. To make sure that the build process runs smoothly, its also important that the nodes are created within the folder of a package that is named just like the package itself. You have to create a ROS2 node inside of a package, otherwise the build process will not work correctly and your node is unusable. In the case of this example, we will create a new node inside the practice project we have created for the <a href="/ros2-concepts/ros2-packages">first</a> part of this tutorial, dealing with packages. Open up the same docker container and navigate to the package <code>ros2-sample-package-python</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ros2-sample-package-python
+</span></span></code></pre></div><p>Once inside, navigate to the folder <code>ros2-sample-package-python</code> by executing the same command again. You should now be inside the folder with the same name as the package. In here, you can create a new file using the <code>touch</code> utility. If you have the VScode instance connected, you can also use the new file button in te code editor to create a new file with the name <code>sample_node.py</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch sample_node.py
+</span></span></code></pre></div><p>Now open up the new file with the VScode code editor, or Vim if you prefer a terminal based approach. This is the file where we will create a new node in. The new node will have the same name as the file, however this is not strictly required and only best practice to do so. Initially we want to import the ROS2 client library for use with python, as we are in a python package.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> rclpy
+</span></span></code></pre></div><p>To make our code more legible and to prevent overly long function names, we want to import <code>Node</code> seperatly from the <code>rclpy</code> library as well</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> rclpy.node <span style="color:#f92672">import</span> Node
+</span></span></code></pre></div><p>We have now imported all prerequisites that are needed to build a ROS2 node. The <code>Node</code> object we imported is a class element, that we will use to create another instance of that class which will house the code that makes our node. Create a new instance of this in the code, by adding this to the file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleNode</span>(Node):
+</span></span></code></pre></div><p>Every ROS2 node requires an <code>__init__</code> function, to provide functionality and become executable. This function defines the initialisation of the node and specifys some information that is required for the ROS2 core to allow the node to be useful. This <code>__init__</code> function consists of several lines of code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>    super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(<span style="color:#e6db74">&#39;sample_node&#39;</span>)
+</span></span></code></pre></div><p>With <code>super().__init__('sample_node')</code> we have defined the name of the function to the rest of the ROS2 ecosystem. In theory you can add any name you want here, it would however create confusion and it&rsquo;s therefore best practice to keep this the same as the file name. Additionally, the <code>__init__</code> function does very much the same as any other python class. You can declare attributes of the class, i.e. variables by doing <code>self.someVariable</code>. There are a few other ROS2 features that will have to be declared in the <code>__init__</code> function, which we will discuss later. As our code is not doing much at the moment, lets add a print statement to the <code>__init__</code> function that we can see when executing the Node later. Your overall code should now look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> rclpy
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> rclpy <span style="color:#f92672">import</span> Node
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleNode</span>(Node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(<span style="color:#e6db74">&#39;sample_node&#39;</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;This node works!&#34;</span>)
+</span></span></code></pre></div><p>In doing so, you have just created a ROS2 node. Congratulations! As of now tho, we can not run the Node as there is no code that executes it. We add this, usually in the same file, by building a <code>main</code> function. This also applies to out python files, even though <code>main</code> functions are usually used in C++ projects. The structure of such a <code>main</code> function is quite standardized, and looks similar across many different nodes.</p>
+<p>First we dont want our function to accept any arguments for now, however it&rsquo;s best to explicitly type this, to prevent problems. Then we have to initialize the <code>rclpy</code> connection by calling <code>rclpy.init()</code>. ROS2 considers the file that we are in a so called context, calling <code>rclpy.init()</code> initializes ROS2 for the first time in this context and connects the file with ROS2.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(args<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    rclpy<span style="color:#f92672">.</span>init(args<span style="color:#f92672">=</span>args)
+</span></span></code></pre></div><p>Next we have to create an instance of the class that is our node, and that we have defined in the same file above. To do so, we use the following code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sample_node <span style="color:#f92672">=</span> SampleNode()
+</span></span></code></pre></div><p>Next stop is starting the ROS2 node. This happens using an executor, and there are several options on how to do this. For now, we will not go into detail here, just know that <code>spin</code> starts a ROS2 node, and make it execute indefinitly unless we either interrupt it manually or the garbage collector picks up the object when it is no longer in use, i.e. the whole ROS2 system has shut down. To make the node interruptable manually, we add a <code>try execpt</code> structure to listen for a <code>KeyboardInterrupt</code>. Whenever the KeyboardInterrupt is registered, we will call the <code>destroy_node()</code> method on the instance of the node to destroy the node. Afterwards we can close the ROS2 context, as no more actions are performed. This helps keep ROS2 clean and working properly. The whole <code>main</code> function should look like this after implementing the changes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(args<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    rclpy<span style="color:#f92672">.</span>init(args<span style="color:#f92672">=</span>args)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        sample_node <span style="color:#f92672">=</span> SampleNode()
+</span></span><span style="display:flex;"><span>        rclpy<span style="color:#f92672">.</span>spin(sample_node)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyboardInterrupt</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>:
+</span></span><span style="display:flex;"><span>        sample_node<span style="color:#f92672">.</span>destroy_node()
+</span></span><span style="display:flex;"><span>        rclpy<span style="color:#f92672">.</span>shutdown()
+</span></span></code></pre></div><p>Now your ROS2 sample node is runnable and can be executed! However, there is currently no way for ROS2 to discover the node or to understand our keyboard inputs that this node is to be run. Also, we have used <code>rclpy</code> in this code, and have to specify this as a dependency of the package where the node is contained in. To add these, navigate back to the package root directory where you will find <code>package.xml</code> and <code>setup.py</code>.</p>
+<p>Within <code>package.xml</code> we will have to note <code>rclpy</code> as a dependency of the package, do this by adding an <code>exec_depend</code> tag into the file, which should looks something like this afterwards:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml-model href=&#34;http://download.ros.org/schema/package_format3.xsd&#34; schematypens=&#34;http://www.w3.org/2001/XMLSchema&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">format=</span><span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;name&gt;</span>ros2-sample-package-python<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;version&gt;</span>0.0.0<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;description&gt;</span>TODO: Package description<span style="color:#f92672">&lt;/description&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;maintainer</span> <span style="color:#a6e22e">email=</span><span style="color:#e6db74">&#34;root@todo.todo&#34;</span><span style="color:#f92672">&gt;</span>root<span style="color:#f92672">&lt;/maintainer&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;license&gt;</span>Apache-2.0<span style="color:#f92672">&lt;/license&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;test_depend&gt;</span>ament_copyright<span style="color:#f92672">&lt;/test_depend&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;test_depend&gt;</span>ament_flake8<span style="color:#f92672">&lt;/test_depend&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;test_depend&gt;</span>ament_pep257<span style="color:#f92672">&lt;/test_depend&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;test_depend&gt;</span>python3-pytest<span style="color:#f92672">&lt;/test_depend&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;exec_depend&gt;</span>rclpy<span style="color:#f92672">&lt;/exec_depend&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;export&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;build_type&gt;</span>ament_python<span style="color:#f92672">&lt;/build_type&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/export&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/package&gt;</span>
+</span></span></code></pre></div><p>While we are at it, also change the <code>version</code>, <code>description</code> and <code>maintainer</code> tags to fit with a name and a sample email.</p>
 
 
 <footer class="footline">
@@ -662,6 +661,22 @@ If you want to learn more about what forking means, see <a href="https://docs.gi
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -681,6 +696,22 @@ If you want to learn more about what forking means, see <a href="https://docs.gi
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -727,16 +758,16 @@ If you want to learn more about what forking means, see <a href="https://docs.gi
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1759005849"></script>
-    <script src="/js/perfect-scrollbar.min.js?1759005849"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1759005849"></script>
-    <script src="/js/jquery.sticky.js?1759005849"></script>
-    <script src="/js/featherlight.min.js?1759005849"></script>
-    <script src="/js/highlight.pack.js?1759005849"></script>
+    <script src="/js/clipboard.min.js?1759343617"></script>
+    <script src="/js/perfect-scrollbar.min.js?1759343617"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1759343617"></script>
+    <script src="/js/jquery.sticky.js?1759343617"></script>
+    <script src="/js/featherlight.min.js?1759343617"></script>
+    <script src="/js/highlight.pack.js?1759343617"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1759005849"></script>
-    <script src="/js/learn.js?1759005849"></script>
-    <script src="/js/hugo-learn.js?1759005849"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1759343617"></script>
+    <script src="/js/learn.js?1759343617"></script>
+    <script src="/js/hugo-learn.js?1759343617"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

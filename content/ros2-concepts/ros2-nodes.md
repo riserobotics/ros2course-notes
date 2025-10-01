@@ -1,132 +1,150 @@
 +++
-title = "Nodes & Packages"
-weight = 3
+title = "Creating nodes"
+weight = 4
 +++
 
-#### The ROS2 node concept
-We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a **node**. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.
+#### Building a ROS2 Node
+In this part of the tutorial series we want to specify an individual ROS2 node, and get an idea of how it looks like. As most of the functionality of ROS2 is centered around nodes, this tutorial is not encompassing all parts of Nodes. We will not get into executors, launch files and similar topics. These will have to wait until later. For now, the goal is to understand from a high-level perspective how Nodes work, and what you can do with them. Everything that goes on under the hood is a topic for a later chapter of this series. 
 
-Obviously a robot is not just one single camera, or a single actuator. A real robotic system would be comprised of many different nodes, that each serve a very different task. Also, there may be multiple nodes that can be attributed to a common purpose, i.e. there might be a node housing the camera driver and another node housing a computer vision algorithm. Together they allow us to use the hardware capabilities of the physical device in the software system we are building. To order this, ROS allows us to put multiple nodes together into a folder so that they form a **package**. As there may be many different people using the particular camera, we can share these packages on a packet exchange called `rosdep`, similarly to how pypi for python packages and apt for debian applications works. We will learn more about this in [Chapter V](/ros2-ecosystem/).
+#### The client libraries
+When we are talking about ROS2 development, or robotic software development with ROS as a whole, we are usually talking about writing *application level code*. We are not interested in how ROS2 works itself, instead we rely on the *Application Programming Interface* (API) that it provides, to interact with what is essentially a black box system to us (Even though we will shed light on the inner workings later in this tutorial series).
 
-![Image 1: Schematic view of the ROS2 node setup](/images/ch2-nodes-overview.png)
+ROS2 itself is a binary program installed on your operating system, much the same as Firefox, Thunderbird or Octave. This is the program where all of the actual computation happens, and it is colloquially known as the ROS2-Core. It provides interfaces to other components on your computer, to perform actions.
 
-We will now set up a ROS project to demonstrate how nodes and packages can be created an used. 
-
-#### Setting up the Tutorial environment
-Make sure that you have the ROS container setup like described in the [tutorial](/installation-and-setup/installation/) on installing the setup. From now on, we assume that you have the Docker container installed and feel comfortable using it. From this point onwards we will also assume that you execute all code **within** that Docker container and not on the host system. To interact with the container easier, you can open up VScode on the host computer and click on the blue button in the bottom left hand corner. In the resulting drop-down menu, select "Attach to a running container". In the following menu select the container you just started. Now, your VScode interface opens up the files in the container, makes the internal terminal run within the container and allows you to execute files in the container.
-
-{{% notice info %}}
-During this course want to use the `git` version control system, to track changes and progress, and also allow feedback to be given on your work. Therefore, before cloning the repository, fork it to your own account using the following steps. 
-Go to GitHub and navigate to the repository, which can be found [here](https://github.com/riserobotics/ros2course). On the top right part of the window, you will find the Button "Fork". After you press that button, a context menu will open. make sure that the dropdown menu under "Owner" is set to your private GitHub account, i.e. the account that has your account name *not* "riserobotics". The repository name will be pre set to "ros2course", we recommend keeping it this way. The same goes for the description, there is no real need to change it. Before clicking on "Create fork" make sure to uncheck the checkbox "Copy the main branch only", to make sure that all branches of the repository are forked. 
-If you want to learn more about what forking means, see [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) for some information.
-{{% /notice %}}
-
-To begin, jump into the docker container and open up an internal terminal. Then go ahead and clone the forked repository to the docker container. If you choose your own name for the repository, make sure to adjust the link accordingly. 
-
-```bash
-git clone https://github.com/[Insert your  GitHub username here]/ros2course
-```
+The interface that ROS2 itself, the binary that we would install on our computer, provides however is not easy to use! The goal when designing it, was to enable fast, efficient and scalable processes, not to enhance programmer experience. Also, the way one would interact with this, does not follow the order of logical software development for robotics. It is in many ways a *deep API*, that provides a lot of functionality with few interfaces. 
 
 {{% notice tip %}}
-Depending on jow you set up your GitHub, you may face difficulty authenticating to the service. If you set up `ssh` based authentification, either import your keys locally to the Docker container which is not recommended as you may share the container with someone and then unwillingly give them access to your keys, or you mount the key as a local volume and give the container access to said volume. For most people however, you will authenticate with `https` based procedures. To do this, you can either install the github command line utility `gh`, or create a token from the Developer settings of your account, as password based authentication has been deprecated. You can find tutorials on token based cloning [here](https://graphite.dev/guides/git-clone-with-token), and on setting up the github command line utility [here](https://cli.github.com/manual/gh_auth_login).
+Beyond the scope of this tutorial series, if you are interested in some interesting notes on how API's in software could (should?) be designed, see [this](https://www.youtube.com/watch?v=bmSAYlu0NcY) excellent talk on the topic. This is not in any way related to robotics, and is not required for this course however, and should be treated as further reading.
 {{% /notice %}}
 
-{{% notice tip %}}
-If you are trying to install `gh`, know that the Docker container does not have the `apt` remote repositorie index lists locally, so you will have to run `sudo apt update` before being able to install anything.
-{{% /notice %}}
+To enable us to write application code, i.e. nodes, packages and other structures within ROS2 in a way that makes sense to human robotics programmers, the ROS2 project provides client libraries. These libraries provide us with an abstraction layer to the "real" ROS2 system, that makes definitions of features easier. In these client libraries, we can find functions to create, start and stop nodes, to send information between nodes, to set parameters and much more. The client library internally translates these requirements into API calls for the actual ROS2 programm, that is running on our computer.
+The avaliability of this client library also determines if we can write ROS2 code in a particular programming language. 
 
-Now move inside of the cloned repository using the `cd` tool
+In general all clinet libraries contain the string `rcl` somewhere in their name, this stands for *Ros Client Library*. Two core client libraries that we will use are called `rclcpp` for C++ and `rclpy` for use with the python programming language. With these two being the most widley used client libraries, there are however ROS2 client libraries for a wide range of programming languages, for example `rclc` for C, `rclrs` for Rust and even `rclnodejs` for interaction with Node.js systems. 
 
-```bash
-cd ros2course
-```
+![Image 2: Schematic view of the ROS2 node setup](/images/ch2-nodes-black-box.png)
 
-If you type `ls` to see the contents of the directory, you can see that they are ordered by the different chapters of this tutorial series. As we are in the second chapter, and are working on the first task, move to the directory `ch2-1-creating-nodes`. Except for a `README.md` and a subdirectory `tests`, this should be an empty directory. Here, we want to set up our first ROS project and create some nodes!
+Another great advantage of the client library system is that we can mix and match programming languages within the same ROS2 project! For example, we can write our high level code controlling overall behaviour of the robot in python using `rclpy` as it is easier to develop and interate on, and use C++ with `rclcpp` to develop the performance sensitive parts of the real time control loops for our motors. At the core of our system is the ROS2 core, and the interface that defines how we talk to said core, is implemented in both programming languages, so we can talk to the same core in the same project at the same time.
 
-#### Setting up the ROS2 workspace
-Every ROS2 project has to run within a ROS2 workspace. At its core the ROS2 workspace is just a folder containing one or more ROS2 packages. Usually we want to create a new folder that will contain this workspace, we are in theory free to choose the name, but it is usually helpful to indicate the purpose of the directory in the name. Create a folder called `ros2-node-test-workspace` and a folder `src` within it. Afterwards, move into this folder.
+![Image 2: Schematic view of the ROS2 node setup](/images/ch2-nodes-multiple-client-libraries.png)
 
-```bash
-mkdir -p ~/ros2-node-test-workspace/src
-cd ros2-node-test-workspace
-```
+So, in order to tell the core ROS2 installation on our computer what to do, we use the ROS2 client libraries to specify our application level code, i.e. nodes. If you are are looking for documentation on ROS2, you are most likley really looking for documentation on one of the ROS2 client libraries.
 
-The `src` directory will serve as the home for all our ROS2 packages that we are going to build. Again, in theory we ware not required to put them into the `src` directory, it is however best practice to do so, making the overall repository structure cleaner and more readable. Up until this point we have not made anything that requires ROS2 yet, all of the tools till now are standard Linux command line tools.
+#### What is a node?
+To make use of a client library and implement a ROS2 feature, let us familiarize ourself with the concept of a node first. Remember that in the introduction, we talked about splitting the project up into several different components, much the same way as the mechanical robot is made up of different parts, i.e. motors, gearboxes, batteries, etc. Every single process in a robot, we will put in a node!
 
-#### Creating a ROS2 package
-Our ROS2 workspace is currently empty, lets change that! We can build a package in two ways, either by putting together the required files in a specific structure ourself, or by using the `ros2` command line utility. Here, we will choose the latter option.
+A node in ROS2 is a fundamental element, that serves a single modular purpose and implements a specific process. A ull robotic system, e.g. the whoel software that is controlling our exoskeleton, is comprised of many nodes that are working together. A node is a self contained process,  and is also executed as one (more on that later!).
+
+#### Building a ROS2 node in Python
+We now want to apply this concept to practice, and make a functioning ROS2 node. As it is easier to read and follow for the most part, we will first explain the concept on the example of a ROS2 python node using the `rclpy` client library. 
+
+First we have to create a new file where the node will live. It is good practice to create a separate file for each node that you are developing. To make sure that the build process runs smoothly, its also important that the nodes are created within the folder of a package that is named just like the package itself. You have to create a ROS2 node inside of a package, otherwise the build process will not work correctly and your node is unusable. In the case of this example, we will create a new node inside the practice project we have created for the [first](/ros2-concepts/ros2-packages) part of this tutorial, dealing with packages. Open up the same docker container and navigate to the package `ros2-sample-package-python`.
 
 ```bash
-ros2 pkg create --build-type ament_python --license Apache-2.0 ros2-sample-package-python
+cd ros2-sample-package-python
 ```
 
-This command creates the structure of a minimal implementation of an empty package for us, at the point where we ran the command. We define the license as the `Apache-2.0` license, and we name the package `ros2-sample-package`. Instead of `ros2-sample-package` we could have also chosen any other name, that is made up of utf8 characters. `--build-type` defines the build system that we use for this package. We will get into this later in more detail, for now just note that this sets the programming language that you will use in the package. `ament_python` will result in this being a python package, `ament_cmake` results in a C/C++ package. We will create both as an example, so also execute:
+Once inside, navigate to the folder `ros2-sample-package-python` by executing the same command again. You should now be inside the folder with the same name as the package. In here, you can create a new file using the `touch` utility. If you have the VScode instance connected, you can also use the new file button in te code editor to create a new file with the name `sample_node.py`.
 
 ```bash
-ros2 pkg create --build-type ament_cmake --license Apache-2.0 ros2-sample-package-cmake
+touch sample_node.py
 ```
 
-To check if everything worked as expected, you can run a test using this command. As an alternative, you can see in the tab menu how the directory structure should look:
-
-{{%expand "Correct directory structure at this point" %}}
-```bash
-.
-├── ros2-sample-package-cmake
-│   ├── include
-│   │   └── ros2-sample-package-cmake
-│   └── src
-├── ros2-sample-package-python
-│   ├── resource
-│   ├── ros2-sample-package-python
-│   │   └── __pycache__
-│   └── test
-│       └── __pycache__
-└── tests
-    └── __pycache__
-```
-{{% /expand%}}
+Now open up the new file with the VScode code editor, or Vim if you prefer a terminal based approach. This is the file where we will create a new node in. The new node will have the same name as the file, however this is not strictly required and only best practice to do so. Initially we want to import the ROS2 client library for use with python, as we are in a python package. 
 
 
-```bash
-pytest tests/test_structure_correct.py -v
+```python
+import rclpy
 ```
 
-It is important that we should not create packages within other packages, as this will potentially lead to some problems. It is best practice, to make every package at the root of the `src` directory. See the following for an example of how **not** to do it.
+To make our code more legible and to prevent overly long function names, we want to import `Node` seperatly from the `rclpy` library as well
 
-```bash
-.
-├── ros2-sample-package-python
-│   ├── resource
-│   ├── ros2-sample-package-cmake
-│   │   ├── include
-│   │   │   └── ros2-sample-package-cmake
-│   │   └── src
-│   ├── ros2-sample-package-python
-│   │   └── __pycache__
-│   └── test
-│       └── __pycache__
-└── tests
-    └── __pycache__
-
+```python
+from rclpy.node import Node
 ```
 
-We have now created two ROS2 packages, one of them is called `ros2-sample-package-cmake` and the other `ros2-sample-package-python`. Now we will proceed with taking a look at what these packages are composed of. 
+We have now imported all prerequisites that are needed to build a ROS2 node. The `Node` object we imported is a class element, that we will use to create another instance of that class which will house the code that makes our node. Create a new instance of this in the code, by adding this to the file
 
-{{< tabs >}}
-{{% tab name="Python (ament_python)" %}}
-- Within the folder resources, there is a empty file called exactly like the package it is build in. Even tough this file is empty, it's quite important and cant be deleted! When running, ROS2 needs to check what packages are installed, this file serves as the "marker" file that ROS2 can search for to see that the package is installed. It's empty, and will almost alwyas stay empty, but it is there for a reason and cant be removed. 
-- The folder with the same name as the package contains the `__init__.py` file, that let's the python interpreter know that this is a package and it can be imported in a different context. This is the place were you will put the python files containing the actual application code. 
-- Within `test`, there are some default test for checking flake8 compatibility, the linter that both we and the ROS2 project uses, as well as for the correct license formatting. You may delete these files, but putting tests in here is generally quite useful.
-- The LICENSE file keeps the LICENSE for the package, that was set when creating it using the ROS2 command line utility.
+```python
+class SampleNode(Node):
+```
 
-The more interesting content can be found in the three files in the directory, `package.xml`, `setup.cfg` and `setup.py`. These contain the information that is actually relevant to the package and where a lot of the configuration of a package can happen. To understand them, be reminded that packages with ROS are very much meant to be shared across teams, labs and companies. Some of the information that is specified here, is only describing the packge to a registry that other people can then search, if you decide to upload your package. 
+Every ROS2 node requires an `__init__` function, to provide functionality and become executable. This function defines the initialisation of the node and specifys some information that is required for the ROS2 core to allow the node to be useful. This `__init__` function consists of several lines of code.
 
-- `package.xml` contains all the information that you can find if you search the ROS2 package registry. The name that is specified here, should be the same as the name of the folder that the whole package is in. Th version can also be defined by the author of the package, same goes for description and the linked email address, used to follow up with the authors in case of problems. More interestingly, the section "build_depend" declares the dependencys that are required by the project. Be aware that this does not refer to Python packages or C++ header files, this references other ROS2 packages. In the case of our package, as we don't require another ROS2 package as a reference, this is empty for now. "test_depend" is a similar nominator, for describing the dependency on a standard ROS2 test command, or any other test package that is required for running unit tests used within the package you are describing. A powerful tool is the "export" keyword, you can use this as a container for exporting additional information, for example which type of build system is to be used. 
-- ``
-{{% /tab %}}
-{{% tab name="C/C++ (ament_cmake)" %}}
-You will have to use VIm inside of the container that you are running. Luckily it is already installed, so there is no configuration required! 
-{{% /tab %}}
-{{< /tabs >}}
+```python
+def __init__(self):
+    super().__init__('sample_node')
+```
 
-#### The build system
+With `super().__init__('sample_node')` we have defined the name of the function to the rest of the ROS2 ecosystem. In theory you can add any name you want here, it would however create confusion and it's therefore best practice to keep this the same as the file name. Additionally, the `__init__` function does very much the same as any other python class. You can declare attributes of the class, i.e. variables by doing `self.someVariable`. There are a few other ROS2 features that will have to be declared in the `__init__` function, which we will discuss later. As our code is not doing much at the moment, lets add a print statement to the `__init__` function that we can see when executing the Node later. Your overall code should now look like this:
+
+```python
+import rclpy
+from rclpy import Node
+
+class SampleNode(Node):
+    def __init__(self):
+        super().__init__('sample_node')
+        print("This node works!")
+```
+
+
+In doing so, you have just created a ROS2 node. Congratulations! As of now tho, we can not run the Node as there is no code that executes it. We add this, usually in the same file, by building a `main` function. This also applies to out python files, even though `main` functions are usually used in C++ projects. The structure of such a `main` function is quite standardized, and looks similar across many different nodes. 
+
+First we dont want our function to accept any arguments for now, however it's best to explicitly type this, to prevent problems. Then we have to initialize the `rclpy` connection by calling `rclpy.init()`. ROS2 considers the file that we are in a so called context, calling `rclpy.init()` initializes ROS2 for the first time in this context and connects the file with ROS2. 
+
+```python
+def main(args=None):
+    rclpy.init(args=args)
+```
+
+Next we have to create an instance of the class that is our node, and that we have defined in the same file above. To do so, we use the following code
+
+```python
+sample_node = SampleNode()
+```
+
+Next stop is starting the ROS2 node. This happens using an executor, and there are several options on how to do this. For now, we will not go into detail here, just know that `spin` starts a ROS2 node, and make it execute indefinitly unless we either interrupt it manually or the garbage collector picks up the object when it is no longer in use, i.e. the whole ROS2 system has shut down. To make the node interruptable manually, we add a `try execpt` structure to listen for a `KeyboardInterrupt`. Whenever the KeyboardInterrupt is registered, we will call the `destroy_node()` method on the instance of the node to destroy the node. Afterwards we can close the ROS2 context, as no more actions are performed. This helps keep ROS2 clean and working properly. The whole `main` function should look like this after implementing the changes:
+
+```python
+def main(args=None):
+    rclpy.init(args=args)
+
+    try:
+        sample_node = SampleNode()
+        rclpy.spin(sample_node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        sample_node.destroy_node()
+        rclpy.shutdown()
+```
+
+Now your ROS2 sample node is runnable and can be executed! However, there is currently no way for ROS2 to discover the node or to understand our keyboard inputs that this node is to be run. Also, we have used `rclpy` in this code, and have to specify this as a dependency of the package where the node is contained in. To add these, navigate back to the package root directory where you will find `package.xml` and `setup.py`.
+
+Within `package.xml` we will have to note `rclpy` as a dependency of the package, do this by adding an `exec_depend` tag into the file, which should looks something like this afterwards:
+
+```xml
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ros2-sample-package-python</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="root@todo.todo">root</maintainer>
+  <license>Apache-2.0</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <exec_depend>rclpy</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+```
+
+While we are at it, also change the `version`, `description` and `maintainer` tags to fit with a name and a sample email. 
