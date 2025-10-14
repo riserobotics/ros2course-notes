@@ -37,18 +37,18 @@
       <description>&lt;h4 id=&#34;building-a-ros2-node&#34;&gt;Building a ROS2 Node&lt;/h4&gt;&#xA;&lt;p&gt;In this part of the tutorial series we want to specify an individual ROS2 node, and get an idea of how it looks like. As most of the functionality of ROS2 is centered around nodes, this tutorial is not encompassing all parts of Nodes. We will not get into executors, launch files and similar topics. These will have to wait until later. For now, the goal is to understand from a high-level perspective how Nodes work, and what you can do with them. Everything that goes on under the hood is a topic for a later chapter of this series.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>The colcon build tool</title>
+      <link>http://localhost:1313/ros2-concepts/ros2-build-system/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ros2-concepts/ros2-build-system/</guid>
+      <description>&lt;p&gt;Within ROS2 we have to use the build system, to make the code that we wrote into our nodes usable and executable for the ROS2 core. Back in the day, in the times of ROS1, the build system for these purposes was called &lt;code&gt;catkin&lt;/code&gt;, which is a heavily customized set of CMake based routines. This build system had a couple of drawbacks and problems that pushed the maintainers of the ROS project towards developing a new system for the release of ROS2. This new system is made up of two parts, the &lt;code&gt;ament&lt;/code&gt; build system and the tooling that the developer uses to talk to this build system from the command line: &lt;code&gt;colcon&lt;/code&gt;. The type of &lt;code&gt;ament&lt;/code&gt; that is used depends on the type of package that is to be build. When we defined a package in the last chapter, you may remember that is twas important to specify this build system when setting up the package in the &lt;code&gt;package.xml&lt;/code&gt; file.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Communication between nodes</title>
       <link>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</guid>
       <description>&lt;p&gt;To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a &lt;strong&gt;communication system&lt;/strong&gt; so that different nodes can communicate with another. This communication system, also somethimes referred to as a data-distribution layer, will send information between different processes at runtime.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>The colcon build system</title>
-      <link>http://localhost:1313/ros2-concepts/ros2-build-system/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/ros2-build-system/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

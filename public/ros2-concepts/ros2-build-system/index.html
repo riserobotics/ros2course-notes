@@ -3,31 +3,31 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.150.1">
+    <meta name="generator" content="Hugo 0.151.0">
     <meta name="description" content="">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>The colcon build system :: My New Hugo Site</title>
+    <title>The colcon build tool :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1759344582" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1759344582" rel="stylesheet">
-    <link href="/css/hybrid.css?1759344582" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1759344582" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1759344582" rel="stylesheet">
-    <link href="/css/auto-complete.css?1759344582" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1759344582" rel="stylesheet">
-    <link href="/css/theme.css?1759344582" rel="stylesheet">
-    <link href="/css/tabs.css?1759344582" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1759344582" rel="stylesheet">
+    <link href="/css/nucleus.css?1760433345" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1760433345" rel="stylesheet">
+    <link href="/css/hybrid.css?1760433345" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1760433345" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1760433345" rel="stylesheet">
+    <link href="/css/auto-complete.css?1760433345" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1760433345" rel="stylesheet">
+    <link href="/css/theme.css?1760433345" rel="stylesheet">
+    <link href="/css/tabs.css?1760433345" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1760433345" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1759344582" rel="stylesheet">
+    <link href="/css/theme-blue.css?1760433345" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1759344582"></script>
+    <script src="/js/jquery-3.3.1.min.js?1760433345"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1759344582"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1759344582"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1760433345"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1760433345"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1759344582"></script>
+<script type="text/javascript" src="/js/search.js?1760433345"></script>
 
     
   </div>
@@ -270,9 +270,9 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/ros2-communication-nodes/" title="Communication between nodes" class="dd-item ">
-        <a href="/ros2-concepts/ros2-communication-nodes/">
-        Communication between nodes
+      <li data-nav-id="/ros2-concepts/ros2-build-system/" title="The colcon build tool" class="dd-item active">
+        <a href="/ros2-concepts/ros2-build-system/">
+        The colcon build tool
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -291,9 +291,9 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/ros2-build-system/" title="The colcon build system" class="dd-item active">
-        <a href="/ros2-concepts/ros2-build-system/">
-        The colcon build system
+      <li data-nav-id="/ros2-concepts/ros2-communication-nodes/" title="Communication between nodes" class="dd-item ">
+        <a href="/ros2-concepts/ros2-communication-nodes/">
+        Communication between nodes
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -396,7 +396,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > The colcon build system
+            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > The colcon build tool
           
         
           
@@ -409,7 +409,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -425,13 +433,51 @@
           
             <h1>
               
-              The colcon build system
+              The colcon build tool
             </h1>
           
 
         
 
 
+<p>Within ROS2 we have to use the build system, to make the code that we wrote into our nodes usable and executable for the ROS2 core. Back in the day, in the times of ROS1, the build system for these purposes was called <code>catkin</code>, which is a heavily customized set of CMake based routines. This build system had a couple of drawbacks and problems that pushed the maintainers of the ROS project towards developing a new system for the release of ROS2. This new system is made up of two parts, the <code>ament</code> build system and the tooling that the developer uses to talk to this build system from the command line: <code>colcon</code>. The type of <code>ament</code> that is used depends on the type of package that is to be build. When we defined a package in the last chapter, you may remember that is twas important to specify this build system when setting up the package in the <code>package.xml</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>export<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>build_type<span style="color:#f92672">&gt;</span>ament_python<span style="color:#f92672">&lt;/</span>build_type<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>export<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Ament itself is quite complicated to get to know, and not relevant for everyday development of robotic software - unless you want to dive deep into performance optimization on the compiler level. Thats why we wont make an effort to learn the details about this build system and instead assume it to work like the developers intended: as a build system for different modules ()&ldquo;packages&rdquo;) together in one workspace that have to run on a robotic device. The more important part when it comes to actually developing software with ROS is the <code>colcon</code> build <em>tool</em>, i.e. the command line application that we use to interact with ament.</p>
+<h4 id="understanding-colcon">Understanding colcon</h4>
+<p>Colcon is a build tool, it does not do the building itself but instructs <code>ament</code> how to do so. Technically, no one is stopping you from calling the <code>ament</code> build system directly, they are also installed on your computer if you installed ROS2 correctly. However, calling the build system directly is usually only an added hassle that does not provide much advantages to the user.</p>
+<p><code>Colcon</code> generally works on the principle of a &ldquo;workspace&rdquo; based build system, i.e. you dont have to manually type  out all the files that you watnt o build, and the specific oder and dependencies that they are to be build. Instead the workspace, i.e. a directory on your computer has to be structured ina specific way and <code>colcon</code> does the rest. The structure that is required for <code>colcon</code> is exactly the structure that we have set up in the previous chapters around packages, nodes and <code>package.xml</code> files. When you use colcon, it will search through all subdirectoys below the level where the command is invoked for packages. To make everything more legible and easier to understand its best to put all of your packages into the <code>src</code> subdirectory.</p>
+<p>Only those folder around a <code>package.xml</code> file, colcon understands to be a package, and is able to build. Missing this file therefore results in the tool just skipping the set of files and not building them.</p>
+<p>Usually we often consider building to be closely linked to compiling something, however we also have to build packages written in interpreted languages such as Python. This obviously has nothing to do with compiling, but more with linking the intepreter to the location of the code files that it has to run when they are called up.</p>
+<h4 id="using-colcon">Using colcon</h4>
+<p>Actually using <code>colcon</code> is quite easy! There is no need to perform an installation, as the package is installed together with the regular ROS2 installation. Also, as for the purposes of this course we will only talk about the basics of <code>colcon</code>, digging deeper is usually only required for configuring custom build systems.</p>
+<p>Let&rsquo;s build the package that we created during the last chapter of this tutorial series! First start the Docker container and attach your VSCode session to it. Then open up a Terminal that is linked to the container. In case you have questions regarding how to do this, see the <a href="/installation-and-setup/installation">Installation</a> chapter of this series. Inside of this tutorial, navigate to the workspace, we called this workspace <code>ros2-node-test-workspace</code>. You should be able to call <code>ls</code> and see something similar:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@2ffb27508d09:~/ros2course/ch2-1-creating-nodes/ros2-node-test-workspace# ls -l
+</span></span><span style="display:flex;"><span>total <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#ae81ff">5</span> root root <span style="color:#ae81ff">4096</span> Oct  <span style="color:#ae81ff">1</span> 09:59 src
+</span></span></code></pre></div><p>This place, where we can see the <code>src</code> directory, is called the <em>workspace root</em>, not because we are the user root, but because it&rsquo;s the root point of the workspace. If we want to build all packages in the subdirectiy <code>src</code> and not have any other special requirements that differ from the defaults we can simply call the build command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colcon build
+</span></span></code></pre></div><p>This will result in the following output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Starting &gt;&gt;&gt; ros2-sample-package-cmake
+</span></span><span style="display:flex;"><span>Starting &gt;&gt;&gt; ros2-sample-package-python
+</span></span><span style="display:flex;"><span>Finished <span style="color:#f92672">&lt;&lt;&lt;</span> ros2-sample-package-python <span style="color:#f92672">[</span>0.92s<span style="color:#f92672">]</span>                                                               
+</span></span><span style="display:flex;"><span>Finished <span style="color:#f92672">&lt;&lt;&lt;</span> ros2-sample-package-cmake <span style="color:#f92672">[</span>0.96s<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Summary: <span style="color:#ae81ff">2</span> packages finished <span style="color:#f92672">[</span>1.09s<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>You have now build the packages that are located in the <code>src</code> folder! IF you run <code>ls- l</code> again, you will however see that there are new directorys in the workspace root.</p>
+<h5 id="log">log</h5>
+<p>Within this folder you will find the logs that concern the build process. These are not the logs that come up while you run the programm, those are by default routed to the terminal and have to be stored seperatly if you wish to do so. Inside the folder is another directory that will be called <code>build_[Date and time when building]</code>. Inside this package we have the detailed logs of the build process, where you can investigate a potential error that would come up during building. If you are interested, this is also an interesting place to understand the anatomy of the build system, as the CMake interface is quite exposed here. The unsorted but complete log of the build process can be found in the file <code>logger_all.log</code>.</p>
+<h5 id="build">build</h5>
+<p>When colcon is building a package, it keeps some build artifacts when finishing to make subsequent build runs faster. The build directory is where these are stored. They are seperated byt the name of the package and are overwritten automatically in the next build if something changes. It is best to not tamper with these artifacts, as this could break the results of the coming builds. Also, in case your build seems to be stuck on a problem you are sure you&rsquo;ve fixed, it is useful to delete this directory. colcon will recreate it the next time you run <code>colcon build</code>, and no old artifacts that are erroneously kept can corrupt your build result.</p>
+<h5 id="install">install</h5>
+<p>This is the main result of the colcon build process, as it stores the result and the scripts that you use to source these results. Inside this folder you will find seperate directorys for all the packages that you&rsquo;ve defined in your workspace, where the resulting files are kept. If you compare the python package to the cmake package, you will see the difference in structure and amount of packages. Next to the directorys that hosue the names of the packages, youll also find several scripts and shell files. These are required so that you can source the result of the build process to your current shell for execution. Currently colcon supports mainly the <code>bash</code> and <code>zsh</code> shell on Linux and MacOD, and <code>powershell</code> on Windows. To source the result of the installation, wait for the build process to finish and then, from the root of your workspace, invoke the following command (for bash, use .zsh for the zsh shell).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source install/setup.sh
+</span></span></code></pre></div>
+<div class="notices warning"  id="tip" ><p>Especially if you are making changes to the ROS2 codebase and aim to execute the code on the robot, make sure to double check the results of your build process,a nd wether or not you are sourcing the correct <code>setup.sh</code> file</p>
+</div>
+
+<p>This is really important. If you dont call this command, the changes you made to the ROS2 code will not apply and you cant use them. Now the results of your code have been built and are ready to be executed on the robot. Before doing so, we will however take a look at how the two nodes we just build, can talk to another in the <a href="/ros2-concepts/ros2-communication-nodes">next</a> chapter.</p>
 
 
 <footer class="footline">
@@ -601,22 +647,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -629,9 +659,6 @@
             
         
                     
-            
-        
-                    
                         
             
             
@@ -639,6 +666,25 @@
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -666,16 +712,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1759344582"></script>
-    <script src="/js/perfect-scrollbar.min.js?1759344582"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1759344582"></script>
-    <script src="/js/jquery.sticky.js?1759344582"></script>
-    <script src="/js/featherlight.min.js?1759344582"></script>
-    <script src="/js/highlight.pack.js?1759344582"></script>
+    <script src="/js/clipboard.min.js?1760433345"></script>
+    <script src="/js/perfect-scrollbar.min.js?1760433345"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1760433345"></script>
+    <script src="/js/jquery.sticky.js?1760433345"></script>
+    <script src="/js/featherlight.min.js?1760433345"></script>
+    <script src="/js/highlight.pack.js?1760433345"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1759344582"></script>
-    <script src="/js/learn.js?1759344582"></script>
-    <script src="/js/hugo-learn.js?1759344582"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1760433345"></script>
+    <script src="/js/learn.js?1760433345"></script>
+    <script src="/js/hugo-learn.js?1760433345"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
