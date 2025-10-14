@@ -48,7 +48,7 @@
       <link>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</guid>
-      <description>&lt;p&gt;To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a &lt;strong&gt;communication system&lt;/strong&gt; so that different nodes can communicate with another. This communication system, also somethimes referred to as a data-distribution layer, will send information between different processes at runtime.&lt;/p&gt;</description>
+      <description>&lt;p&gt;To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a &lt;strong&gt;communication system&lt;/strong&gt; so that different nodes can communicate with another. This communication system, also sometimes referred to as a data-distribution layer, will send information between different processes at runtime. The theory and software that underpins this functionality is not unique to ROS2 and is used extensively throughout other software projects in the industry.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

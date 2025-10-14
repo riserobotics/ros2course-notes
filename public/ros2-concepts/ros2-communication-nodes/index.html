@@ -12,22 +12,22 @@
     <title>Communication between nodes :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1760433345" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1760433345" rel="stylesheet">
-    <link href="/css/hybrid.css?1760433345" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1760433345" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1760433345" rel="stylesheet">
-    <link href="/css/auto-complete.css?1760433345" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1760433345" rel="stylesheet">
-    <link href="/css/theme.css?1760433345" rel="stylesheet">
-    <link href="/css/tabs.css?1760433345" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1760433345" rel="stylesheet">
+    <link href="/css/nucleus.css?1760471728" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1760471728" rel="stylesheet">
+    <link href="/css/hybrid.css?1760471728" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1760471728" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1760471728" rel="stylesheet">
+    <link href="/css/auto-complete.css?1760471728" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1760471728" rel="stylesheet">
+    <link href="/css/theme.css?1760471728" rel="stylesheet">
+    <link href="/css/tabs.css?1760471728" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1760471728" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1760433345" rel="stylesheet">
+    <link href="/css/theme-blue.css?1760471728" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1760433345"></script>
+    <script src="/js/jquery-3.3.1.min.js?1760471728"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1760433345"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1760433345"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1760471728"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1760471728"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1760433345"></script>
+<script type="text/javascript" src="/js/search.js?1760471728"></script>
 
     
   </div>
@@ -409,7 +409,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -432,7 +440,202 @@
         
 
 
-<p>To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a <strong>communication system</strong> so that different nodes can communicate with another. This communication system, also somethimes referred to as a data-distribution layer, will send information between different processes at runtime.</p>
+<p>To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a <strong>communication system</strong> so that different nodes can communicate with another. This communication system, also sometimes referred to as a data-distribution layer, will send information between different processes at runtime. The theory and software that underpins this functionality is not unique to ROS2 and is used extensively throughout other software projects in the industry.</p>
+<h4 id="theory-and-structure-of-remote-procedure-calling">Theory and structure of remote procedure calling</h4>
+<p>The goal of the ROS2 communication framework is to allow two nodes, that run at the same time to exchange information between them. Traditionally, when we think about programms, they are encapsulated from the rest of the operating system, running subsequently and are being executed after one another. However, as we discussed before, in robotics programming we structure our software into several small nodes that all run at the same time, similar to the microservice architecture employed by large scale software systems.</p>
+<p>The tool we use to make this work is called A <em>DDS</em>, ie.e. a Data Distribution Layer. We can think of this as a middleware, not quite on the level of the operating system but also not application level code. This middleware is not exclusive to ROS2, instead its being used all over the software landscape in many projects, a lot of them having nothing to do with robotics. A DDS has to do three main different types of work:</p>
+<ul>
+<li><strong>Discovery:</strong> Discovering other instances of a DDS to be able initialize a connection</li>
+<li><strong>Data exchange:</strong> Sending and receiving messages</li>
+<li><strong>Quality of service (QoS):</strong> Controlling the reliability and latency of messages to meet deadline in cases where this is required.</li>
+</ul>
+<p>Most DDS frameworks are built on top of the principle of the publish subscribe architecture. The &ldquo;source&rdquo; of an information, i.e. some node for example, publishes the information that is to be transmitted on some channel. The recieving party, i.e. some other node is then subscribing to that communication channel to get any bit of information that is send. We can think of different structures, there may be only one publisher and many subscribers, a type of one-to-many relationship, where no bidirectional communication exists, so the publisher is not a subscriber at the same time. This structure would be called &ldquo;Broadcast&rdquo;. There may also be bilateral communication channels where there are only two nodes connected, and each of them in publisher and subscriber at the same time.</p>
+<p>We also refer to the implementation of such communication systems as remote procedure calling</p>
+<h4 id="the-ros2-dds">The ROS2-DDS</h4>
+<p>We mentioned before that there are several implementations of a DDS. ROS2 gives us the opportunity to select a DDS among different options, with each of the different options suiting different needs. By default ROS2 supports <a href="https://docs.ros.org/en/iron/Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html">Eclipse <strong>Cyclone DDS</strong></a>, <a href="https://docs.ros.org/en/iron/Installation/DDS-Implementations/Working-with-eProsima-Fast-DDS.html">eProsima <strong>Fast DDS</strong></a> and <a href="https://docs.ros.org/en/iron/Installation/DDS-Implementations/Working-with-GurumNetworks-GurumDDS.html">GurumNetworks <strong>GurumDDS</strong></a>. By default, unless specified otherwise, Fast DDS is used, so that&rsquo;s what we are going to talk about in this tutorial. With the exception of more specialized applications Fast DDS is almost always sufficient for most usecases, and there is little need to adapt. One notable exception to that however are real time compliant ROS2 systems. If real time compliance is a hard requirement, ROS2 has to be rebuilt from source with the <strong>Connext DDS</strong>, which is not included by default. Using Connext for other applications is not advisable, as the way it is to be run and used differs quite a bit from the other DDS systems, due to the inherent real time specifications.</p>
+<p>The communication with the DDS happens via the ROS2 client libraries, so it is very well possible to abstract away the details of the data distribution layer when building application level software. From the developer the interface of the data channel has to be defined and, most importantly, the type of data that is to be transmitted that has to be written down in a defined message file.</p>
+<h4 id="defining-data-that-is-to-be-transmitted">Defining data that is to be transmitted</h4>
+<p>When we want to transmit data we first have to define the shape and size of the dataset that we want to transmit. There are some defaults that are provided by ROS2 and dont require any more effort. These include the following data types:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Name of type</th>
+          <th>C++ data type</th>
+          <th>Python data type</th>
+          <th>DDS data type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>bool</td>
+          <td>bool</td>
+          <td>builtins.bool</td>
+          <td>boolean</td>
+      </tr>
+      <tr>
+          <td>byte</td>
+          <td>uint8_t</td>
+          <td>builtins.bytes*</td>
+          <td>octet</td>
+      </tr>
+      <tr>
+          <td>char</td>
+          <td>char</td>
+          <td>builtins.str*</td>
+          <td>char</td>
+      </tr>
+      <tr>
+          <td>float32</td>
+          <td>float</td>
+          <td>builtins.float*</td>
+          <td>float</td>
+      </tr>
+      <tr>
+          <td>float64</td>
+          <td>double</td>
+          <td>builtins.float*</td>
+          <td>double</td>
+      </tr>
+      <tr>
+          <td>int8</td>
+          <td>int8_t</td>
+          <td>builtins.int*</td>
+          <td>octet</td>
+      </tr>
+      <tr>
+          <td>uint8</td>
+          <td>uint8_t</td>
+          <td>builtins.int*</td>
+          <td>octet</td>
+      </tr>
+      <tr>
+          <td>int16</td>
+          <td>int16_t</td>
+          <td>builtins.int*</td>
+          <td>short</td>
+      </tr>
+      <tr>
+          <td>uint16</td>
+          <td>uint16_t</td>
+          <td>builtins.int*</td>
+          <td>unsigned short</td>
+      </tr>
+      <tr>
+          <td>int32</td>
+          <td>int32_t</td>
+          <td>builtins.int*</td>
+          <td>long</td>
+      </tr>
+      <tr>
+          <td>uint32</td>
+          <td>uint32_t</td>
+          <td>builtins.int*</td>
+          <td>unsigned long</td>
+      </tr>
+      <tr>
+          <td>int64</td>
+          <td>int64_t</td>
+          <td>builtins.int*</td>
+          <td>long long</td>
+      </tr>
+      <tr>
+          <td>uint64</td>
+          <td>uint64_t</td>
+          <td>builtins.int*</td>
+          <td>unsigned long long</td>
+      </tr>
+      <tr>
+          <td>string</td>
+          <td>std::string</td>
+          <td>builtins.str</td>
+          <td>string</td>
+      </tr>
+      <tr>
+          <td>wstring</td>
+          <td>std::u16string</td>
+          <td>builtins.str</td>
+          <td>wstring</td>
+      </tr>
+  </tbody>
+</table>
+<p>It is also possible to combine these into arrays using the following avaliable structures</p>
+<table>
+  <thead>
+      <tr>
+          <th>Name of type</th>
+          <th>C++ data type</th>
+          <th>Python data type</th>
+          <th>DDS data type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>static array</td>
+          <td>std::array&lt;T, N&gt;</td>
+          <td>builtins.list*</td>
+          <td>T[N]</td>
+      </tr>
+      <tr>
+          <td>unbounded dynamic array</td>
+          <td>std::vector</td>
+          <td>builtins.list</td>
+          <td>sequence</td>
+      </tr>
+      <tr>
+          <td>bounded dynamic array</td>
+          <td>custom_class&lt;T, N&gt;</td>
+          <td>builtins.list*</td>
+          <td>sequence&lt;T, N&gt;</td>
+      </tr>
+      <tr>
+          <td>bounded string</td>
+          <td>std::string</td>
+          <td>builtins.str*</td>
+          <td>string</td>
+      </tr>
+  </tbody>
+</table>
+<p>Sometimes these datatypes are not enough and a dataset containing more than one value is required that can not simply be combined using one of the aforementioned structures. In this case we have to make a custom data structure that can be a combination of any of the previous datatypes and is sent in one go, therefore we dont have to wait for some parts of the message to arrive. We will now define an example of such a message definition.</p>
+<p>Defining custom messages should, by convention, happen in a seperate package whose contents are then imported into other packages. It is important to know that custom messages can only be defined in <code>ament_cmake</code> packages. As the packes themself dont contain any application level code, this has few consequences on the development experience. Obviosuly its also possible to import the message defined in a C++ package in a python package. To create such a package move back into your code editor, and open up the directory <code>ch2-2-defining-messages</code> that is present in the repository you&rsquo;ve forked.</p>
+<p>Once inside that folder we can create new package on the <code>ament_cmake</code> build system with the name &ldquo;example_messages&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 pkg create --build-type ament_cmake example_messages
+</span></span></code></pre></div><p>Navigate inside that package. Here we will define the different message types. In general we have to distinguish between two different types of messages, the <code>.msg</code> pure message and the <code>.srv</code> message. Both serve the purpose of transferring data but are slightly different. Therefore we want to define two directorys inside the package, <code>msg</code> and <code>srv</code> isnide the <code>src</code> directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd src
+</span></span><span style="display:flex;"><span>mkdir msg srv
+</span></span></code></pre></div><p>All definitions of data transfer objects are made in files with either the ending <code>.msg</code> for messages and <code>.srv</code> for service messages. Essentially, <code>.msg</code> files are for unidirectional data transfer, where one node sends data and does not care about neither the recipient nor the response. The <code>.srv</code> files are for bidirectional data exchange between two nodes. We will talk about this topic in more detail in the following paragraf after finising the definition of the message package.</p>
+<p>We will create a simple <code>.msg</code> example, that will allow a node to transmit two <em>int64</em> type data points. Navigate inside the <code>.msg</code> directory and create a new file called <code>ExampleNumbers.msg</code>. Now open up this file and add the following lines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int64 ExampleNumberOne
+</span></span><span style="display:flex;"><span>int64 ExampleNumberTwo
+</span></span></code></pre></div><p>In doing so we defined the message type <em>ExampleNumbers</em> that we can import into other nodes in the future. This message type now has two properties <em>ExampleNumberOne</em> and <em>ExampleNumberTwo</em>, both of them of type int64. Using this message we can now broadcast two 64bit Integers! Now we want to also create a service message file. Move out of the <code>msg</code> directory, and open the <code>srv</code> directory. Once there, create a new file called <code>ExchangeNumber.srv</code>. As mentioned before, these messages can implement bidirectional communication, meaning that the node that initiates the transmission will also recieve a response. This behaviour is directly mapped to the structure of the file structure of the message. Create this in <code>ExchangeNumber.srv</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int64 NumberToSend
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>int64 NumberToRecieve
+</span></span></code></pre></div><p>Here we will transmit the <code>NumberToSend</code> property to some other node, and this node will return the <code>NumberToRecieve</code> property after doing some computation within the node.</p>
+<p>To be able to use these newly defined message types within other packages, we need to perform some housekeeping and add boilerplate code to the package definition. We have to add some additional build instructions to thr <code>CMakeLists.txt</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>find_package(rosidl_default_generators REQUIRED)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rosidl_generate_interfaces(${PROJECT_NAME}
+</span></span><span style="display:flex;"><span>  &#34;msg/ExampleNumbers.msg&#34;
+</span></span><span style="display:flex;"><span>  &#34;srv/ExchangeNumber.srv&#34;
+</span></span><span style="display:flex;"><span> )
+</span></span></code></pre></div><p>Additionally there have to be edits to the <code>package.xml</code> file, to make sure that the <code>rosidl_default_generators</code> component of ROS2 is loaded properly, as it is required for building the message package.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;build_depend&gt;</span>rosidl_default_generators<span style="color:#f92672">&lt;/build_depend&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;exec_depend&gt;</span>rosidl_default_runtime<span style="color:#f92672">&lt;/exec_depend&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;member_of_group&gt;</span>rosidl_interface_packages<span style="color:#f92672">&lt;/member_of_group&gt;</span>
+</span></span></code></pre></div><p>Now the package is ready to be built. As we may use this later on in a large project, we will only built this package. To do this using <code>colcon</code> execute the following command at the root of the project, e.g. <em>ch2-2-defining-messages</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colcon build --packages-select example_messages
+</span></span></code></pre></div><p>This sums up the build process of a simple package that contains a <code>.srv</code> and a <code>.msg</code> file. We will now take a look at how these can be used, and what type of data exchange can be performed using these.</p>
+<h4 id="types-of-communication-channels">Types of communication channels</h4>
+<p>There are different ways how ROS2 Nodes can communicate with another. In general, this tutorial only talks about the communication inbetween nodes, within one node regular processes of Python or C++ can be used, e.g. encapsulating functionality in functions, etc. We may either <em>broadcast</em> information or <em>transmit</em> it. In ROS2 broadcasting happens using a Topic, transmitting information is done via Actions or Services.</p>
+<h5 id="topics">Topics</h5>
+<p>Topics can be compared to a radio frequency in FM/AM radio. There is no information available to the sender that specifies the number of receivers or if there even are any. There is also no direct response, the reciever may choose to answer but might also refrain from doing so. Multiple parties can speak on the same topic, but not at the same time. Topics are best used for continous data streams and are often periodically updated. For example, there might be a temperature sensor in our battery that is transmitting the current temperature every ten seconds. There can both be many senders on the same topics as there can be many recievers. There may also be many senders but only one receiver.</p>
+<h5 id="actions">Actions</h5>
+<p>Actions are designed for longer-running tasks that may require feedback, monitoring, or preemption. Unlike services, actions allow for continuous communication between the client and server while a goal is being executed, enabling progress updates and cancellation if needed. They are suitable for processes that take significant time or involve multiple steps, such as computing a new movement strategy or navigating to a waypoint. Actions provide structured feedback and result messages, making them ideal for tasks that must be interruptible and observable throughout their execution.</p>
+<h5 id="services">Services</h5>
+<p>Services are best used for quick, one-time interactions that complete rapidly and provide an immediate response. They operate in a request–response manner, where a client sends a request and waits for a server to process and return a result. Services are ideal for short, well-defined tasks such as retrieving system information, setting parameters, or performing brief computations. They should not be used for long-running operations or processes that require continuous feedback, as they are designed for fast, blocking calls that complete in a single exchange.</p>
+<h4 id="making-two-nodes-talk-to-one-another">Making two nodes talk to one another</h4>
 
 
 <footer class="footline">
@@ -667,16 +870,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1760433345"></script>
-    <script src="/js/perfect-scrollbar.min.js?1760433345"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1760433345"></script>
-    <script src="/js/jquery.sticky.js?1760433345"></script>
-    <script src="/js/featherlight.min.js?1760433345"></script>
-    <script src="/js/highlight.pack.js?1760433345"></script>
+    <script src="/js/clipboard.min.js?1760471728"></script>
+    <script src="/js/perfect-scrollbar.min.js?1760471728"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1760471728"></script>
+    <script src="/js/jquery.sticky.js?1760471728"></script>
+    <script src="/js/featherlight.min.js?1760471728"></script>
+    <script src="/js/highlight.pack.js?1760471728"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1760433345"></script>
-    <script src="/js/learn.js?1760433345"></script>
-    <script src="/js/hugo-learn.js?1760433345"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1760471728"></script>
+    <script src="/js/learn.js?1760471728"></script>
+    <script src="/js/hugo-learn.js?1760471728"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
