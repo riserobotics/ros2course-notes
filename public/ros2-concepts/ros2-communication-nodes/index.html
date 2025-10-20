@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.151.0">
+    <meta name="generator" content="Hugo 0.151.1">
     <meta name="description" content="">
 
 
@@ -12,22 +12,22 @@
     <title>Communication between nodes :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1760471728" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1760471728" rel="stylesheet">
-    <link href="/css/hybrid.css?1760471728" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1760471728" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1760471728" rel="stylesheet">
-    <link href="/css/auto-complete.css?1760471728" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1760471728" rel="stylesheet">
-    <link href="/css/theme.css?1760471728" rel="stylesheet">
-    <link href="/css/tabs.css?1760471728" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1760471728" rel="stylesheet">
+    <link href="/css/nucleus.css?1760995027" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1760995027" rel="stylesheet">
+    <link href="/css/hybrid.css?1760995027" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1760995027" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1760995027" rel="stylesheet">
+    <link href="/css/auto-complete.css?1760995027" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1760995027" rel="stylesheet">
+    <link href="/css/theme.css?1760995027" rel="stylesheet">
+    <link href="/css/tabs.css?1760995027" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1760995027" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1760471728" rel="stylesheet">
+    <link href="/css/theme-blue.css?1760995027" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1760471728"></script>
+    <script src="/js/jquery-3.3.1.min.js?1760995027"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1760471728"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1760471728"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1760995027"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1760995027"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1760471728"></script>
+<script type="text/javascript" src="/js/search.js?1760995027"></script>
 
     
   </div>
@@ -305,6 +305,32 @@
           
         
         </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/ros2-concepts-advanced/" title="Advanced Concepts of ROS2" class="dd-item
+        
+        
+        
+        ">
+      <a href="/ros2-concepts-advanced/">
+          <b>III. </b>Advanced Concepts of ROS2
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
       
     </li>
   
@@ -636,6 +662,135 @@
 <h5 id="services">Services</h5>
 <p>Services are best used for quick, one-time interactions that complete rapidly and provide an immediate response. They operate in a request–response manner, where a client sends a request and waits for a server to process and return a result. Services are ideal for short, well-defined tasks such as retrieving system information, setting parameters, or performing brief computations. They should not be used for long-running operations or processes that require continuous feedback, as they are designed for fast, blocking calls that complete in a single exchange.</p>
 <h4 id="making-two-nodes-talk-to-one-another">Making two nodes talk to one another</h4>
+<p>We will now try to get started with making two ros2 nodes talk to each other. To do so, open up the tutorial and navigate to the folder <code>ch2-3-make-the-nodes-talk</code>. Let us investigate it&rsquo;s contents.</p>
+<p>Inside the <code>src</code> folder can see four packages, <code>listener_node</code>, <code>talker_node</code>, <code>broadcast_node</code> and the <code>msg_package</code>. They are all defined as packages, so going further remember that the location where you can see the <code>src</code> directory, this is the root of the project and the place from which we want to execute the build commands.</p>
+<p>If you navigate to the <code>msg_package</code>, you can see that this is very similar to the message package we created in the last section. It contains two declerations of interfaces, a .msg file and a .srv file. Inside <code>Broadcast.msg</code> you can see that we will broadcast a simple single integer value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>int64 num
+</span></span></code></pre></div><p>The service decleration <code>Transmit.srv</code> is a bit more complex, as it contains both a request and a response part.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>int64 value
+</span></span><span style="display:flex;"><span>int64 value2
+</span></span><span style="display:flex;"><span>int64 value3
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>int64 result
+</span></span></code></pre></div><p>These are the two types of information that we will send, once the <code>Broadcast.msg</code> as part of a topic and once the <code>Transmit.srv</code> as part of a service. Now take a look at the broadcast package, as this will demonstrate the implementation of a topic based communication channel.</p>
+<h5 id="using-topics">Using topics</h5>
+<p>Inside the <code>broadcast_node</code> you will find a package that is also called <code>broadcast_node</code>. Inside there are two files, one of them being called <code>broadcast.py</code>. Open up this file. This is an example of a simeple ROS2 naodes that implements a topic publisher. The communication that originates from this node is unidirectional, meaning that there is no response expected from any other node and the topic is simply broadcasted out. It is very well possible that a topic is broadcasted but no other node is listening to it.</p>
+<p>In the beginnign we are importing the <code>rclpy</code> library, that contains the ROS2 client library for Python. Additionally we are importing the <code>Node</code> class, as we will create a node that will broadcast information. Finally we are importing the <code>Broadcast</code> message type from the <code>msg_package</code> that we defined earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> rclpy
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> rclpy.node <span style="color:#f92672">import</span> Node
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> msg_package.msg <span style="color:#f92672">import</span> Broadcast
+</span></span></code></pre></div><p>The node itself, as explained before, is defined as a class that inherits from the <code>Node</code> class. In the constructor of this class we are initializing the node with the name <code>publish_information</code>. Up until this point, this is a regular implementation of a ROS2 node. In the next line we are defining a publisher. It is important to note that <strong>publishers and subscribers are referring to topics</strong> and not to services.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#f92672">.</span>publisher_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>create_publisher(Broadcast, <span style="color:#e6db74">&#39;topic&#39;</span>, <span style="color:#ae81ff">10</span>)
+</span></span></code></pre></div><p>The publisher is defined as an attribute of the node itself and consists of three properties. First we define the type of message that we want to send over the topic. This is what we defined previously with the custom defined message within the package <code>msg_package</code>. Next, we define the name of the topic, in this case it is simply named <em>topic</em>, but we are free to choose almost any other name. Finally, we define the size of the message queue. This is important as messages may be sent faster than they are being received. In most cases however, this is not strictly required and we will not go into more detail in the basic chapter of this tutorial series.</p>
+<p>In the following line we are introducing another concept od ROS2, the timer! A timer executes a certain function at a defined interval. In this case we are defining a timer that will execute the <code>timer_callback</code> function every half second, i.e. every 500 milliseconds. After this interval the methiod <code>timer_callback</code> will be executed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>timer_period <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>  
+</span></span><span style="display:flex;"><span>self<span style="color:#f92672">.</span>timer <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>create_timer(timer_period, self<span style="color:#f92672">.</span>timer_callback)
+</span></span></code></pre></div><p>Afterwwards we initialize the counter property of the node <em>i</em> as 0. This will be used to increment the value that is being broadcasted. The relevant properties of the publishing procedure happen within the <code>timer_callback</code> function. In here we define the message to be of type Broadcast, the message type we defined earlier. Then we set the property <code>num</code> of the message to be equal to the counter property <em>i</em>. After this we log the information that is being broadcasted, so that we can see it in the terminal. Finally we publish the message using the publisher that we defined earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>msg <span style="color:#f92672">=</span> Broadcast()
+</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">.</span>num <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>i
+</span></span><span style="display:flex;"><span>self<span style="color:#f92672">.</span>publisher_<span style="color:#f92672">.</span>publish(msg)
+</span></span><span style="display:flex;"><span>self<span style="color:#f92672">.</span>get_logger()<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;Publishing: &#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;&#39;</span> <span style="color:#f92672">%</span> msg<span style="color:#f92672">.</span>data)
+</span></span><span style="display:flex;"><span>self<span style="color:#f92672">.</span>i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>The main function is quite similar to the ones we have set up before, we initialize <code>rclpy</code>, create an instance of the <code>ExamplePublisher</code> node and spin it up to have the code working. Finally we destroy the node and shutdown <code>rclpy</code> after we are done.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>rclpy<span style="color:#f92672">.</span>init(args<span style="color:#f92672">=</span>args)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>minimal_publisher <span style="color:#f92672">=</span> ExamplePublisher()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rclpy<span style="color:#f92672">.</span>spin(minimal_publisher)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>minimal_publisher<span style="color:#f92672">.</span>destroy_node()
+</span></span><span style="display:flex;"><span>rclpy<span style="color:#f92672">.</span>shutdown()
+</span></span></code></pre></div><h5 id="using-services">Using services</h5>
+<p>We can also transmit information using services. The advantages of services is, that they allow bidirectional communication, meaning that the node that is sending the information can also recieve a response from the node that is processing the information. To demonstrate this, we will take a look at the <code>talker_node</code> package. Inside this package there is a file called <code>service_server.py</code>. Open up this package directory, you will find a file inside the <code>src</code> subdirectory called <code>server_node.cpp</code>. This file contains the node that is serving new service messages.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;rclcpp/rclcpp.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;msg_package/srv/transmit.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;inttypes.h&gt;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><p>In the beginnign we import the usual packages, in this case the <code>rclcpp</code> package for C++ and the custom defined service message from the <code>msg_package</code> package. The <code>memory</code> and <code>inittypes</code> packages are standard C++ packages that are required for memory managment and integer type definitions. In case we define our functiosn differently, we could get around using them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle_transmit</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>msg_package<span style="color:#f92672">::</span>srv<span style="color:#f92672">::</span>Transmit<span style="color:#f92672">::</span>Request<span style="color:#f92672">&gt;</span> request,
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>msg_package<span style="color:#f92672">::</span>srv<span style="color:#f92672">::</span>Transmit<span style="color:#f92672">::</span>Response<span style="color:#f92672">&gt;</span> response)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  response<span style="color:#f92672">-&gt;</span>result <span style="color:#f92672">=</span> request<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">+</span> request<span style="color:#f92672">-&gt;</span>value2 <span style="color:#f92672">+</span> request<span style="color:#f92672">-&gt;</span>value3;
+</span></span><span style="display:flex;"><span>  RCLCPP_INFO(
+</span></span><span style="display:flex;"><span>    rclcpp<span style="color:#f92672">::</span>get_logger(<span style="color:#e6db74">&#34;transmit_server&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Incoming request:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> value: %&#34;</span> PRId64 <span style="color:#e6db74">&#34;  value2: %&#34;</span> PRId64 <span style="color:#e6db74">&#34;  value3: %&#34;</span> PRId64,
+</span></span><span style="display:flex;"><span>    request<span style="color:#f92672">-&gt;</span>value, request<span style="color:#f92672">-&gt;</span>value2, request<span style="color:#f92672">-&gt;</span>value3);
+</span></span><span style="display:flex;"><span>  RCLCPP_INFO(
+</span></span><span style="display:flex;"><span>    rclcpp<span style="color:#f92672">::</span>get_logger(<span style="color:#e6db74">&#34;transmit_server&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sending back response: [%&#34;</span> PRId64 <span style="color:#e6db74">&#34;]&#34;</span>, response<span style="color:#f92672">-&gt;</span>result);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This is the initial function that will handle incoming service requests. It takes two arguments, the request and the response. The request is a shared pointer to the request part of the service message, the response is a shared pointer to the response part of the service message. Inside this function we are simply summing up the three values that are being sent as part of the request and setting this as the result property of the response. Additionally we are logging both the incoming request as well as the outgoing response to the terminal.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  rclcpp<span style="color:#f92672">::</span>init(argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> node <span style="color:#f92672">=</span> rclcpp<span style="color:#f92672">::</span>Node<span style="color:#f92672">::</span>make_shared(<span style="color:#e6db74">&#34;transmit_server&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> service <span style="color:#f92672">=</span> node<span style="color:#f92672">-&gt;</span>create_service<span style="color:#f92672">&lt;</span>msg_package<span style="color:#f92672">::</span>srv<span style="color:#f92672">::</span>Transmit<span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#34;transmit&#34;</span>, <span style="color:#f92672">&amp;</span>handle_transmit);
+</span></span><span style="display:flex;"><span>  RCLCPP_INFO(rclcpp<span style="color:#f92672">::</span>get_logger(<span style="color:#e6db74">&#34;transmit_server&#34;</span>), <span style="color:#e6db74">&#34;Ready to sum three int64s.&#34;</span>);
+</span></span><span style="display:flex;"><span>  rclcpp<span style="color:#f92672">::</span>spin(node);
+</span></span><span style="display:flex;"><span>  rclcpp<span style="color:#f92672">::</span>shutdown();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The main function is similar to the ones we have seen before. We initialize <code>rclcpp</code>, create a node with the name <code>transmit_server</code> and then create a service on that node. The service is of type <code>Transmit</code>, the custom defined service message we created earlier. The name of the service is <code>transmit</code> and the function that will handle incoming requests is <code>handle_transmit</code>, the function we defined previously. After logging that the server is ready, we spin the node to have it process incoming requests. Finally we shutdown <code>rclcpp</code> when we are done.</p>
+<p>As we are now defining a service, we require a secondary node that will send requests to this service and process the responses. This is done in the <code>service_client.py</code> file within the <code>listener_node</code> package. Open up the package. In there you will notice two files, <code>service_client.py</code> and <code>listener.py</code>. We will focus on the <code>service_client.py</code> file for now, as this is the node that will send requests to the service server we defined earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> rclpy
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> rclpy.node <span style="color:#f92672">import</span> Node
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> msg_package.srv <span style="color:#f92672">import</span> Transmit
+</span></span></code></pre></div><p>Here we are importing the required packages, similar to what we have done before. The only new import is the <code>sys</code> package, which is a standard Python package that allows us to access command line arguments.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransmitClient</span>(Node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(<span style="color:#e6db74">&#39;transmit_client&#39;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>cli <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>create_client(Transmit, <span style="color:#e6db74">&#39;transmit&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>cli<span style="color:#f92672">.</span>wait_for_service(timeout_sec<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>):
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>get_logger()<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;service not available, waiting...&#39;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>req <span style="color:#f92672">=</span> Transmit<span style="color:#f92672">.</span>Request()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send_request</span>(self, a, b, c):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>req<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> int(a)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>req<span style="color:#f92672">.</span>value2 <span style="color:#f92672">=</span> int(b)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>req<span style="color:#f92672">.</span>value3 <span style="color:#f92672">=</span> int(c)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>cli<span style="color:#f92672">.</span>call_async(self<span style="color:#f92672">.</span>req)
+</span></span></code></pre></div><p>This is the definition of the <code>TransmitClient</code> node. In the constructor we initialize the node with the name <code>transmit_client</code>. Then we create a client that will connect to the service named <code>transmit</code>, which is the service we defined in the service server node earlier. After this we wait for the service to become available, as it may take some time for the server to start up. Finally we create a request object that will be used to send requests to the server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    rclpy<span style="color:#f92672">.</span>init()
+</span></span><span style="display:flex;"><span>    node <span style="color:#f92672">=</span> TransmitClient()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>): 
+</span></span><span style="display:flex;"><span>            a, b, c <span style="color:#f92672">=</span> i, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>            future <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>send_request(a, b, c)
+</span></span><span style="display:flex;"><span>            rclpy<span style="color:#f92672">.</span>spin_until_future_complete(node, future)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> future<span style="color:#f92672">.</span>result() <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>                node<span style="color:#f92672">.</span>get_logger()<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;[</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">] result: </span><span style="color:#e6db74">{</span>future<span style="color:#f92672">.</span>result()<span style="color:#f92672">.</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                node<span style="color:#f92672">.</span>get_logger()<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#39;service call failed&#39;</span>)
+</span></span><span style="display:flex;"><span>            time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyboardInterrupt</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>destroy_node()
+</span></span><span style="display:flex;"><span>    rclpy<span style="color:#f92672">.</span>shutdown()
+</span></span></code></pre></div><p>The main function is similar to what we have seen before. We initialize <code>rclpy</code>, check if the correct number of command line arguments are provided, and create an instance of the <code>TransmitClient</code> node. Then we send a request to the server using the command line arguments as values. We wait for the response using <code>spin_until_future_complete</code>. If we receive a result, we log it repeatedly to the terminal. Finally, we destroy the node and shutdown <code>rclpy</code>.</p>
+<h5 id="launching-the-nodes">Launching the nodes</h5>
+<p>Now we want to launch these nodes locally, to see how the information is transmitted between the different nodes. To do so, open up a terminal and navigate to the root of the project, e.g. <code>ch2-3-make-the-nodes-talk</code>. First, we will build all packages using <code>colcon</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colcon build --symlink-install
+</span></span></code></pre></div><p>In case we have previously build the project already and made changes, its good practice to clean the build, install and log directories before building again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf build install log
+</span></span><span style="display:flex;"><span>colcon build --symlink-install
+</span></span></code></pre></div><p>Then we fill first try out the topic based communication. Open up an additional terminal window. In both windows source the install setup file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source install/setup.bash
+</span></span></code></pre></div><p>Now the build project is intialized and ready to go. In the first terminal window, we will launch the broadcast node that will publish information on a topic. To do so, execute the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 run broadcast_node broadcast
+</span></span></code></pre></div><p>Then, in the second tutorial, execute the listener node that will subscribe to the topic and receive the information.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 run listener_node listener
+</span></span></code></pre></div><p>You should now see in the terminal window of the listener node that it is receiving the information that is being broadcasted by the broadcast node! Now let us try the same for the service node. Stop both processing by hitting <code>CTRL+C</code> in both terminal windows. Then, in the first terminal window, launch the listener node with the three number 1, 2 and 3.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 run listener_node service_client <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>Then, in the second terminal window, launch the talker node that will serve the service requests.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ros2 run talker_node server_node
+</span></span></code></pre></div><p>You should now see in the terminal window of the service client that it is receiving the summed up result from the service server! Congratulations, you have successfully made two ROS2 nodes talk to each other using both topics and services!</p>
 
 
 <footer class="footline">
@@ -855,6 +1010,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
 
@@ -870,16 +1041,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1760471728"></script>
-    <script src="/js/perfect-scrollbar.min.js?1760471728"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1760471728"></script>
-    <script src="/js/jquery.sticky.js?1760471728"></script>
-    <script src="/js/featherlight.min.js?1760471728"></script>
-    <script src="/js/highlight.pack.js?1760471728"></script>
+    <script src="/js/clipboard.min.js?1760995027"></script>
+    <script src="/js/perfect-scrollbar.min.js?1760995027"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1760995027"></script>
+    <script src="/js/jquery.sticky.js?1760995027"></script>
+    <script src="/js/featherlight.min.js?1760995027"></script>
+    <script src="/js/highlight.pack.js?1760995027"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1760471728"></script>
-    <script src="/js/learn.js?1760471728"></script>
-    <script src="/js/hugo-learn.js?1760471728"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1760995027"></script>
+    <script src="/js/learn.js?1760995027"></script>
+    <script src="/js/hugo-learn.js?1760995027"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
