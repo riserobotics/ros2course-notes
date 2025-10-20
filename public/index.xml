@@ -16,6 +16,13 @@
       <description>&lt;p&gt;When we talk about robot programming, we should spend a quick minute thinking about what the robot exoskeleton that we use is made of and what parts are inside. THis will allows us to later understand what is going on, when we talk about connecting bus systems to actuators and reading pressure values from sensors.&lt;/p&gt;&#xA;&lt;h4 id=&#34;what-are-robots-made-of&#34;&gt;What are robots made of?&lt;/h4&gt;&#xA;&lt;p&gt;In our case, the robot is always the exoskeleton, or at the very least a simulation of the exoskeleton. There are plenty of other robots out there, from specialized industry machinery like pick and place machines tha assemble PCBs, humanoid bipedal walking robot like the famous Boston Dynamics Atlas, Quadrupeds like ANYmal that most resemble dogs or robotic arms with gripper attachments that can help to move small object around in environments designed for humans.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Executors</title>
+      <link>http://localhost:1313/ros2-concepts-advanced/executors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ros2-concepts-advanced/executors/</guid>
+      <description>&lt;p&gt;Up until this point, we have not thought more about what actually happens when we call &lt;code&gt;rclpy.spin(node)&lt;/code&gt; in our main program. In traditional simple python development, we are usually only aware of programs being executed &lt;em&gt;sequentially&lt;/em&gt;, i.e. one bit after the other. As we are building robotic software, this would be unfortunate, as we have software architectures that require many processes to run at the same time and - most importantly, we have to be able to control how and when they run. At this point it makes sense to get to know the different executors that ROS2 offers a bit more.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Prerequisites</title>
       <link>http://localhost:1313/installation-and-setup/prerequisites/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

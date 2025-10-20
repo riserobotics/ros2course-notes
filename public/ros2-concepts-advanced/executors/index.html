@@ -9,25 +9,25 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Defining a robot :: My New Hugo Site</title>
+    <title>Executors :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1760995349" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1760995349" rel="stylesheet">
-    <link href="/css/hybrid.css?1760995349" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1760995349" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1760995349" rel="stylesheet">
-    <link href="/css/auto-complete.css?1760995349" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1760995349" rel="stylesheet">
-    <link href="/css/theme.css?1760995349" rel="stylesheet">
-    <link href="/css/tabs.css?1760995349" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1760995349" rel="stylesheet">
+    <link href="/css/nucleus.css?1760998673" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1760998673" rel="stylesheet">
+    <link href="/css/hybrid.css?1760998673" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1760998673" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1760998673" rel="stylesheet">
+    <link href="/css/auto-complete.css?1760998673" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1760998673" rel="stylesheet">
+    <link href="/css/theme.css?1760998673" rel="stylesheet">
+    <link href="/css/tabs.css?1760998673" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1760998673" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1760995349" rel="stylesheet">
+    <link href="/css/theme-blue.css?1760998673" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1760995349"></script>
+    <script src="/js/jquery-3.3.1.min.js?1760998673"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/ros2-concepts/defining-the-robot/">
+  <body class="" data-url="/ros2-concepts-advanced/executors/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1760995349"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1760995349"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1760998673"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1760998673"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1760995349"></script>
+<script type="text/javascript" src="/js/search.js?1760998673"></script>
 
     
   </div>
@@ -158,7 +158,7 @@
   
     
     <li data-nav-id="/ros2-concepts/" title="Core Concepts of ROS2" class="dd-item
-        parent
+        
         
         
         ">
@@ -186,7 +186,7 @@
  
   
     
-      <li data-nav-id="/ros2-concepts/defining-the-robot/" title="Defining a robot" class="dd-item active">
+      <li data-nav-id="/ros2-concepts/defining-the-robot/" title="Defining a robot" class="dd-item ">
         <a href="/ros2-concepts/defining-the-robot/">
         Defining a robot
         <i class="fas fa-check read-icon"></i>
@@ -320,7 +320,7 @@
   
     
     <li data-nav-id="/ros2-concepts-advanced/" title="Advanced Concepts of ROS2" class="dd-item
-        
+        parent
         
         
         ">
@@ -331,6 +331,37 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/ros2-concepts-advanced/executors/" title="Executors" class="dd-item active">
+        <a href="/ros2-concepts-advanced/executors/">
+        Executors
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
       
     </li>
   
@@ -422,7 +453,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/ros2-concepts/'>Core Concepts of ROS2</a> > Defining a robot
+            <a href='/'>Home</a> > <a href='/ros2-concepts-advanced/'>Advanced Concepts of ROS2</a> > Executors
           
         
           
@@ -459,19 +490,32 @@
           
             <h1>
               
-              Defining a robot
+              Executors
             </h1>
           
 
         
 
 
-<p>When we talk about robot programming, we should spend a quick minute thinking about what the robot exoskeleton that we use is made of and what parts are inside. THis will allows us to later understand what is going on, when we talk about connecting bus systems to actuators and reading pressure values from sensors.</p>
-<h4 id="what-are-robots-made-of">What are robots made of?</h4>
-<p>In our case, the robot is always the exoskeleton, or at the very least a simulation of the exoskeleton. There are plenty of other robots out there, from specialized industry machinery like pick and place machines tha assemble PCBs, humanoid bipedal walking robot like the famous Boston Dynamics Atlas, Quadrupeds like ANYmal that most resemble dogs or robotic arms with gripper attachments that can help to move small object around in environments designed for humans.</p>
-<p>At their core, all of these robots have to move around to be useful and to be able to exert force onto objects in their surrounding. The source of this movement is an actuator. Actuators come in many different shapes and sizes, and follow different operational principles as well. Pneumatic actuators are moved by compressed air or other gases displacing components of cylinders. Very similarly, hydraulic actuators move robots by pumping some hydraulic fluid, often an oil, through pipes and valves to reach cylinders. Previously hydraulic actuation was th go-to method for many robots, especially in the humanoid space. FOr example, the original <a href="https://en.wikipedia.org/wiki/Atlas_(robot)">Atlas</a> robot used hydraulic fluids to move it&rsquo;s limbs. More recently though, electromechanical actuation has taken the lead, as electric motors have become smaller and their power density, i.e. the amount of torque they can exert per unit of space/weight, has grown.</p>
-<p>Most robots that are electromechanically actuated use a type of electric motor called a BLDC motor. This motor type has many advantage, especially when applied to the field of robotics - however they have one major flaw: making them turn is not easy! Whereas with a classic DC or AC motor one simply applies a voltage, BLDC motors need a complicated commutation procedure that has to be provided by a special motor controller. These small devices implement the control technology for the individual joints of a robot, like our exoskeleton! In additional to simply controlling the motor, they also contain control loops that make sure that we can give the motor controller a positional value, i.e. some degree value in a rotating actuator, and the motor moves there. The source of this position information is a sensor that we refer to as an encoder. These also come in many different shapes and sizes, if they measure a turn on an axis they are referred to as rotational encoders, if they measure position on a line we call them linear encoder. For measuring the position, several different methods exist, most commonly either an optical or magnetic measurement principle is used.</p>
-<p>The information, where the motor is required to turn to is provided via a Bus system. Multiple bus systems exist, most commonly we will probably find a variation of CAN however many modern robots use EtherCAT. The bus systems can be understood of a local, specialized network that transfers sensor readings and target information between components of a machine. This is the communication infrastructure that connects the main controller, on which ROS2 will be running, with the individual components of the robot, i.e. the actuators, sensors etc.</p>
+<p>Up until this point, we have not thought more about what actually happens when we call <code>rclpy.spin(node)</code> in our main program. In traditional simple python development, we are usually only aware of programs being executed <em>sequentially</em>, i.e. one bit after the other. As we are building robotic software, this would be unfortunate, as we have software architectures that require many processes to run at the same time and - most importantly, we have to be able to control how and when they run. At this point it makes sense to get to know the different executors that ROS2 offers a bit more.</p>
+<h4 id="what-is-an-executor">What is an executor</h4>
+<p>Executors are the components of ROS2 that are responsible for running the nodes that we build. They use one, or if required multiple, threads of the underlying operating system, e.g. mostly Ubuntu, to execute the ROS2 nodes. We can handle this from simple to complicated with a rising degree of control as we get towards the more complicated options.</p>
+<p>Functions and patterns that are affected by the choice of Executors include Subscriptions to Topics, Timers that lauch reocurring functions, service servers that transmit services and action servers that transmit actions.</p>
+<h4 id="types-of-executors">Types of Executors</h4>
+
+<div class="notices warning" ><p>Be aware that there have been quite substantial changes to the Executors between ROS1 and ROS2. In case you have already gained some experience with ROS1, make sure to study this topic again, as fundamental concepts have changed.</p>
+</div>
+
+<ol>
+<li>
+<p>The <code>spin</code> executor. This is the simplest executor that is avaliable through ROS2. Here, the node will be executed within the main thread, in practice <code>spin</code> refers to a simple, single threaded executor. In the core of ROS, when the <code>spin</code> executor is called, the middleware is being surveilled for incoming messages and request to the node. These incoming messages are stored within the middleware, it does not matter which one is selected here as all offer support for this behaviour, until the node is scheduled to take over within the main thread. Then the information is retrieved from the middleware and processed. The <code>spin</code> executor is easiest to use, as there are no behaviors that are unintuitive on first view.</p>
+</li>
+<li>
+<p>The <code>SingleThreadedExecutor</code>. This is quite similar in behavior to <code>spin</code> when configured right, but offers more options when it comes to customizability. We will make use of this executor quite often. You can think of the <code>SingleThreadedExecutor</code> as the explicit version of what <code>spin</code> does behind the scenes. Using this executor, you can have more control over when and which nodes are added, when the executor starts and how the shutdown of the nodes is handled.</p>
+</li>
+</ol>
+<h4 id="the-singlethreadedexecutor">The <code>SingleThreadedExecutor</code></h4>
+<p>As an example for how the <code>SingleThreadedExecutor</code> and the regular <code>spin</code> differs, see the code examples in <code>ch3-1-executor-comparison</code>. You will find three options that all implement a similar node using a different executor. In <code>spin_one</code> we can observe the simple <code>rclpy.spin()</code> executor, abstracting the complexity of the execution of nodes away from the developer. In comparison to that, check the <code>exec_two_nodes</code> file, where we can see the <code>SingleThreadedExecutor</code>.</p>
 
 
 <footer class="footline">
@@ -560,7 +604,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -573,7 +616,6 @@
             
             
                 
-                    
                     
                 
                 
@@ -590,9 +632,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -677,6 +716,21 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
                 
                 
 
@@ -688,10 +742,16 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -719,16 +779,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1760995349"></script>
-    <script src="/js/perfect-scrollbar.min.js?1760995349"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1760995349"></script>
-    <script src="/js/jquery.sticky.js?1760995349"></script>
-    <script src="/js/featherlight.min.js?1760995349"></script>
-    <script src="/js/highlight.pack.js?1760995349"></script>
+    <script src="/js/clipboard.min.js?1760998673"></script>
+    <script src="/js/perfect-scrollbar.min.js?1760998673"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1760998673"></script>
+    <script src="/js/jquery.sticky.js?1760998673"></script>
+    <script src="/js/featherlight.min.js?1760998673"></script>
+    <script src="/js/highlight.pack.js?1760998673"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1760995349"></script>
-    <script src="/js/learn.js?1760995349"></script>
-    <script src="/js/hugo-learn.js?1760995349"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1760998673"></script>
+    <script src="/js/learn.js?1760998673"></script>
+    <script src="/js/hugo-learn.js?1760998673"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

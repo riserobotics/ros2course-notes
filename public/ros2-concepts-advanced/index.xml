@@ -6,7 +6,14 @@
     <description>Recent content in Advanced Concepts of ROS2 on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/ros2-concepts-advanced/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Executors</title>
+      <link>http://localhost:1313/ros2-concepts-advanced/executors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ros2-concepts-advanced/executors/</guid>
+      <description>&lt;p&gt;Up until this point, we have not thought more about what actually happens when we call &lt;code&gt;rclpy.spin(node)&lt;/code&gt; in our main program. In traditional simple python development, we are usually only aware of programs being executed &lt;em&gt;sequentially&lt;/em&gt;, i.e. one bit after the other. As we are building robotic software, this would be unfortunate, as we have software architectures that require many processes to run at the same time and - most importantly, we have to be able to control how and when they run. At this point it makes sense to get to know the different executors that ROS2 offers a bit more.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
