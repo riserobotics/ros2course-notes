@@ -13,13 +13,13 @@ There is a wide variety of tools available now that can be grouped under the nam
 
 This rule, in itself, is a bad rule, as there is no way of enforcing it. It does not take a genius to use generative AI in a way that it is hardly, if at all recognizable as coming from such a tool. We therefore can, in practice, only ask you to comply with this rule. To explain this decision, see the following rationale. 
 
-- **Quality concerns:** Popular LLms are great at generating code that *plausibly looks* like it works well. For the most part, especially in tasks with overall lower complexity, common models are capable of creating good solutions. However, there is great potential for the introduction of ever so slightly wrong code bits, which are painful to track down later on. 
+- **Quality concerns:** Popular LLMs are great at generating code that *plausibly looks* like it works well. For the most part, especially in tasks with overall lower complexity, common models are capable of creating good solutions. However, there is great potential for the introduction of ever so slightly wrong code bits, which are painful to track down later on. 
 
 - **Overestimation:** LLMs also empower people who are not as familiar with the details of a language or framework to tackle tasks that they themself would not be capable of solving. This is great in theory, in practice however it leads to people solving tasks, for which they dont bring the required level of competence, resulting in them being unable to judge the quality and safety of a solution. In addition this is a highly frustrating process for both the person "vibe-coding" the solution as they are not learning much, and the person reviewing the solution as they spend a ,lot of time explaining errors and mistakes that have not been committed by the person receiving the review. 
 
 - **Safety concerns:** While we are not looking to attain a medical device certification anytime soon, we still run the code that is developed here on an exoskeleton with a real person inside of it. Even tough there are reviews in place, and we extensivly test the system before using it with a real pilot, the code written here still, directly or indirectly, controls joints that move real legs. Therefore we require people contributing code here, to **understand their contribution in full detail**.
 
-- **Copyright:** We may want to open source the project at some point. It is still unclear, how AI generated code is treated in this regard and wether or nit it's compatible with the licenses we use. 
+- **Copyright:** We may want to open source the project at some point. It is still unclear, how AI generated code is treated in this regard and wether or not it's compatible with the licenses we want to use. 
 
 So, to summarize: Do not use AI to generate code that you will directly integrate into a pull request. As a rule of thumb, if you typed out all of the code that you submitted, you will be perfectly fine. 
 
