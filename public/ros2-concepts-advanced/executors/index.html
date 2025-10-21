@@ -12,22 +12,22 @@
     <title>Executors :: My New Hugo Site</title>
 
     
-    <link href="/css/nucleus.css?1760998673" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1760998673" rel="stylesheet">
-    <link href="/css/hybrid.css?1760998673" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1760998673" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1760998673" rel="stylesheet">
-    <link href="/css/auto-complete.css?1760998673" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1760998673" rel="stylesheet">
-    <link href="/css/theme.css?1760998673" rel="stylesheet">
-    <link href="/css/tabs.css?1760998673" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1760998673" rel="stylesheet">
+    <link href="/css/nucleus.css?1761056798" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1761056798" rel="stylesheet">
+    <link href="/css/hybrid.css?1761056798" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1761056798" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1761056798" rel="stylesheet">
+    <link href="/css/auto-complete.css?1761056798" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1761056798" rel="stylesheet">
+    <link href="/css/theme.css?1761056798" rel="stylesheet">
+    <link href="/css/tabs.css?1761056798" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1761056798" rel="stylesheet">
     
-    <link href="/css/theme-blue.css?1760998673" rel="stylesheet">
+    <link href="/css/theme-blue.css?1761056798" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1760998673"></script>
+    <script src="/js/jquery-3.3.1.min.js?1761056798"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -53,14 +53,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1760998673"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1760998673"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1761056798"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1761056798"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1760998673"></script>
+<script type="text/javascript" src="/js/search.js?1761056798"></script>
 
     
   </div>
@@ -516,6 +516,17 @@
 </ol>
 <h4 id="the-singlethreadedexecutor">The <code>SingleThreadedExecutor</code></h4>
 <p>As an example for how the <code>SingleThreadedExecutor</code> and the regular <code>spin</code> differs, see the code examples in <code>ch3-1-executor-comparison</code>. You will find three options that all implement a similar node using a different executor. In <code>spin_one</code> we can observe the simple <code>rclpy.spin()</code> executor, abstracting the complexity of the execution of nodes away from the developer. In comparison to that, check the <code>exec_two_nodes</code> file, where we can see the <code>SingleThreadedExecutor</code>.</p>
+<h4 id="the-multithreadedexecutor">The <code>MultiThreadedExecutor</code></h4>
+<p>When we want to enable multi-threaded execution, this is the correct executor to choose.<br>
+Unlike the <code>SingleThreadedExecutor</code>, which processes callbacks sequentially, the <code>MultiThreadedExecutor</code> allows multiple callbacks to run in parallel using different threads. This can significantly improve performance in systems where multiple nodes or callbacks perform blocking operations or long-running computations.</p>
+<p>For example, a <code>MultiThreadedExecutor</code> is especially useful when:</p>
+<ul>
+<li>You have multiple subscribers or timers that can operate independently.</li>
+<li>Some callbacks perform time-consuming tasks that would otherwise block others.</li>
+<li>You want to make full use of multi-core processors.
+If we are, for example, building a camera video node that is evaluating each image for potential hurdles, we may want to have two models running at the same time.</li>
+</ul>
+<p>By default, the <code>MultiThreadedExecutor</code> creates one thread per CPU core, but this can be configured as needed.  Developers must, however, ensure that their code is <strong>thread-safe</strong>, as simultaneous access to shared resources can cause race conditions if not handled properly. We can do this by choosing the usual tools that C++ offers us, when building thread safe architectus (i.e. <code>mutex</code> for example)</p>
 
 
 <footer class="footline">
@@ -779,16 +790,16 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1760998673"></script>
-    <script src="/js/perfect-scrollbar.min.js?1760998673"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1760998673"></script>
-    <script src="/js/jquery.sticky.js?1760998673"></script>
-    <script src="/js/featherlight.min.js?1760998673"></script>
-    <script src="/js/highlight.pack.js?1760998673"></script>
+    <script src="/js/clipboard.min.js?1761056798"></script>
+    <script src="/js/perfect-scrollbar.min.js?1761056798"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1761056798"></script>
+    <script src="/js/jquery.sticky.js?1761056798"></script>
+    <script src="/js/featherlight.min.js?1761056798"></script>
+    <script src="/js/highlight.pack.js?1761056798"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1760998673"></script>
-    <script src="/js/learn.js?1760998673"></script>
-    <script src="/js/hugo-learn.js?1760998673"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1761056798"></script>
+    <script src="/js/learn.js?1761056798"></script>
+    <script src="/js/hugo-learn.js?1761056798"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

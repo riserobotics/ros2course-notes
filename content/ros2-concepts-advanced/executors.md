@@ -23,3 +23,15 @@ Be aware that there have been quite substantial changes to the Executors between
 
 #### The `SingleThreadedExecutor`
 As an example for how the `SingleThreadedExecutor` and the regular `spin` differs, see the code examples in `ch3-1-executor-comparison`. You will find three options that all implement a similar node using a different executor. In `spin_one` we can observe the simple `rclpy.spin()` executor, abstracting the complexity of the execution of nodes away from the developer. In comparison to that, check the `exec_two_nodes` file, where we can see the `SingleThreadedExecutor`.  
+
+#### The `MultiThreadedExecutor`
+When we want to enable multi-threaded execution, this is the correct executor to choose.  
+Unlike the `SingleThreadedExecutor`, which processes callbacks sequentially, the `MultiThreadedExecutor` allows multiple callbacks to run in parallel using different threads. This can significantly improve performance in systems where multiple nodes or callbacks perform blocking operations or long-running computations.  
+
+For example, a `MultiThreadedExecutor` is especially useful when:
+- You have multiple subscribers or timers that can operate independently.
+- Some callbacks perform time-consuming tasks that would otherwise block others.
+- You want to make full use of multi-core processors.
+If we are, for example, building a camera video node that is evaluating each image for potential hurdles, we may want to have two models running at the same time. 
+
+By default, the `MultiThreadedExecutor` creates one thread per CPU core, but this can be configured as needed.  Developers must, however, ensure that their code is **thread-safe**, as simultaneous access to shared resources can cause race conditions if not handled properly. We can do this by choosing the usual tools that C++ offers us, when building thread safe architectus (i.e. `mutex` for example)
