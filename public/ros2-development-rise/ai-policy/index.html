@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Home :: My New Hugo Site</title>
+    <title>AI &amp; LLM policy :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1761063907" rel="stylesheet">
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/ros2-development-rise/ai-policy/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -377,7 +377,7 @@
   
     
     <li data-nav-id="/ros2-development-rise/" title="Developing ROS2 within RISE" class="dd-item
-        
+        parent
         
         
         ">
@@ -426,7 +426,7 @@
  
   
     
-      <li data-nav-id="/ros2-development-rise/ai-policy/" title="AI &amp; LLM policy" class="dd-item ">
+      <li data-nav-id="/ros2-development-rise/ai-policy/" title="AI &amp; LLM policy" class="dd-item active">
         <a href="/ros2-development-rise/ai-policy/">
         AI &amp; LLM policy
         <i class="fas fa-check read-icon"></i>
@@ -504,47 +504,101 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/ros2-development-rise/'>Developing ROS2 within RISE</a> > AI & LLM policy
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              AI &amp; LLM policy
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h2 id="an-introduction-to-ros2">An Introduction to ROS2</h2>
-<p><strong>Welcome to the RISE &ldquo;An Introduction to ROS2&rdquo; crash course!</strong></p>
-<p>The goal of this website is to provide notes and references for people interested in developing code within the ROS2 framework for use on the RISE exoskeleton. The world of ROS2 and robotic programming as a whole is quite vast, and this introduction is not attempting to introduce you to every nook and cranny of it. This is - hopefully not literally - a crash course, a set of notes and tasks that will help you get up to speed with writing ROS2 based code.</p>
-<p>There are several parts of the ROS2 framework that we dont use on the exoskeleton for various reasons. As a result, those will not be covered here, or at most just quickly glossed over. Some parts of the framework are of particular importance, and will therefore be looked on with greater attention to detail. If you want to learn more about the ROS2 framework as a whole, there are lots of <a href="">resources</a> you can choose from, that take a much more holistic approach to ROS2 and robotic programming.</p>
-<hr>
-<p>We don&rsquo;t assume any prerequisites in robotic programming, or any of the tools named in this tutorial - even though it certainly helps! This tutorial is structured so that you can skip chapters and parts that deal with information you already know. Every chapter is presented in four different ways:</p>
-<ol>
-<li>
-<p>This <strong>website</strong> combines notes, graphs, images and code snippets. Wherever possible we make references to the code used on the current exoskeleton.</p>
-</li>
-<li>
-<p>The <strong>presentation slides</strong> avaliable for download on the top of each chapter page. These are the slides used during the introduction workshop at the beginning of each semester.</p>
-</li>
-<li>
-<p>The <strong>video recordings</strong> of these presentations, as well as some other topics that are worth it to show in greater detail.</p>
-</li>
-<li>
-<p>Several <strong>code examples</strong> and notebooks for trying out the content by yourself on your own machine. All of these can be found in <a href="https://github.com/riserobotics/ros2course">this</a> repository.</p>
-</li>
-</ol>
 
-<div class="notices warning" ><p>As you will learn, ROS has been under development for a while. Right now, there are many <em>Distributions</em> of ROS that each are named after some species of turtle (<a href="https://en.wikipedia.org/wiki/Hawksbill_sea_turtle"><strong>Humble</strong> Hawksbill</a>, <a href="https://en.wikipedia.org/wiki/Jalisco_mud_turtle"><strong>Jazzy</strong> Jalisco</a> and so on). However a few years back, the ROS project released a breaking change that remodelled a lot of the underlying architecture, this <em>version</em> is now formally called ROS2 and no longer just ROS, and it&rsquo;s what we are using in this project. For the sake of simplicity we will refer to these ROS2 versions as ROS, but be warned that tutorials from the original ROS, are not fully translatable to how modern ROS(2) works. So, if you are diving deeper into this topic and are trying to find further readings, make sure that the material is about ROS2 (and ideally the two most recent LTS versions &ldquo;Humble&rdquo; and &ldquo;Jazzy&rdquo;) and not the original ROS.</p>
+<div class="notices warning" ><p>This article refers to the policy on AI used in developing code for use in the RISE codebase. It does not apply to the policy on AI used in reports, presentations and the final documentation in the RISE project that is relevant for grading. To see these guidelines, please refer to the ISIS course.</p>
 </div>
 
-<p>You are welcome to only take a look at some of these, or watch all of them. Not for every task in the semester there is a need to know every bit of what&rsquo;s explained in this tutorial, but having a general grasp on how things work is quite useful.</p>
+<p>There is a wide variety of tools available now that can be grouped under the name &ldquo;generative AI&rdquo; or LLMs that are capable of generating source code. The adoption of these tools is to be expected on a scale that is likley only growing in the future. Various open source projects have adopted a wide range of position (see <a href="https://wiki.gentoo.org/wiki/Project:Council/AI_policy">here</a>, <a href="https://lists.debian.org/debian-project/2024/05/msg00003.html">here</a>, <a href="https://asahilinux.org/docs/project/policies/slop/">here</a>, <a href="https://llvm.org/docs/FAQ.html#id4">here</a> or <a href="https://osralliance.org/wp-content/uploads/2025/05/OSRF-Policy-on-the-Use-of-Generative-Tools-Generative-AI-in-Contributions.pdf">here</a>) on the topic of their use in creating code that is to be integrated into the codebase of these projects. For software engineering within the RISE project we adopted the following policy.</p>
+<p><strong>It is forbidden to use generative AI tools to directly generate source code that is comitted to a code base. However, it is allowed to use these tools for guidance, asking questions and help with debugging. It remains the responsibility of the contributor to fully understand the functionality and content of the proposed solution!</strong></p>
+<p>This rule, in itself, is a bad rule, as there is no way of enforcing it. It does not take a genius to use generative AI in a way that it is hardly, if at all recognizable as coming from such a tool. We therefore can, in practice, only ask you to comply with this rule. To explain this decision, see the following rationale.</p>
+<ul>
+<li>
+<p><strong>Quality concerns:</strong> Popular LLms are great at generating code that <em>plausibly looks</em> like it works well. For the most part, especially in tasks with overall lower complexity, common models are capable of creating good solutions. However, there is great potential for the introduction of ever so slightly wrong code bits, which are painful to track down later on.</p>
+</li>
+<li>
+<p><strong>Overestimation:</strong> LLMs also empower people who are not as familiar with the details of a language or framework to tackle tasks that they themself would not be capable of solving. This is great in theory, in practice however it leads to people solving tasks, for which they dont bring the required level of competence, resulting in them being unable to judge the quality and safety of a solution. In addition this is a highly frustrating process for both the person &ldquo;vibe-coding&rdquo; the solution as they are not learning much, and the person reviewing the solution as they spend a ,lot of time explaining errors and mistakes that have not been committed by the person receiving the review.</p>
+</li>
+<li>
+<p><strong>Safety concerns:</strong> While we are not looking to attain a medical device certification anytime soon, we still run the code that is developed here on an exoskeleton with a real person inside of it. Even tough there are reviews in place, and we extensivly test the system before using it with a real pilot, the code written here still, directly or indirectly, controls joints that move real legs. Therefore we require people contributing code here, to <strong>understand their contribution in full detail</strong>.</p>
+</li>
+<li>
+<p><strong>Copyright:</strong> We may want to open source the project at some point. It is still unclear, how AI generated code is treated in this regard and wether or nit it&rsquo;s compatible with the licenses we use.</p>
+</li>
+</ul>
+<p>So, to summarize: Do not use AI to generate code that you will directly integrate into a pull request. As a rule of thumb, if you typed out all of the code that you submitted, you will be perfectly fine.</p>
+
+<div class="notices tip" ><p>If you are interested how the Transformers architecture can be used in robotics, see <a href="https://robotics-transformer.github.io/assets/rt1.pdf">this</a> interesting publication!</p>
+</div>
+
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -771,6 +825,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -783,6 +838,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -800,6 +858,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -818,6 +877,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 

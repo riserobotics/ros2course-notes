@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Home :: My New Hugo Site</title>
+    <title>Developing ROS2 within RISE :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1761063907" rel="stylesheet">
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/ros2-development-rise/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -378,7 +378,7 @@
     
     <li data-nav-id="/ros2-development-rise/" title="Developing ROS2 within RISE" class="dd-item
         
-        
+        active
         
         ">
       <a href="/ros2-development-rise/">
@@ -504,47 +504,66 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > Developing ROS2 within RISE
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
+        
+          <div id="chapter">
         
         <div id="body-inner">
           
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h2 id="an-introduction-to-ros2">An Introduction to ROS2</h2>
-<p><strong>Welcome to the RISE &ldquo;An Introduction to ROS2&rdquo; crash course!</strong></p>
-<p>The goal of this website is to provide notes and references for people interested in developing code within the ROS2 framework for use on the RISE exoskeleton. The world of ROS2 and robotic programming as a whole is quite vast, and this introduction is not attempting to introduce you to every nook and cranny of it. This is - hopefully not literally - a crash course, a set of notes and tasks that will help you get up to speed with writing ROS2 based code.</p>
-<p>There are several parts of the ROS2 framework that we dont use on the exoskeleton for various reasons. As a result, those will not be covered here, or at most just quickly glossed over. Some parts of the framework are of particular importance, and will therefore be looked on with greater attention to detail. If you want to learn more about the ROS2 framework as a whole, there are lots of <a href="">resources</a> you can choose from, that take a much more holistic approach to ROS2 and robotic programming.</p>
-<hr>
-<p>We don&rsquo;t assume any prerequisites in robotic programming, or any of the tools named in this tutorial - even though it certainly helps! This tutorial is structured so that you can skip chapters and parts that deal with information you already know. Every chapter is presented in four different ways:</p>
-<ol>
-<li>
-<p>This <strong>website</strong> combines notes, graphs, images and code snippets. Wherever possible we make references to the code used on the current exoskeleton.</p>
-</li>
-<li>
-<p>The <strong>presentation slides</strong> avaliable for download on the top of each chapter page. These are the slides used during the introduction workshop at the beginning of each semester.</p>
-</li>
-<li>
-<p>The <strong>video recordings</strong> of these presentations, as well as some other topics that are worth it to show in greater detail.</p>
-</li>
-<li>
-<p>Several <strong>code examples</strong> and notebooks for trying out the content by yourself on your own machine. All of these can be found in <a href="https://github.com/riserobotics/ros2course">this</a> repository.</p>
-</li>
-</ol>
 
-<div class="notices warning" ><p>As you will learn, ROS has been under development for a while. Right now, there are many <em>Distributions</em> of ROS that each are named after some species of turtle (<a href="https://en.wikipedia.org/wiki/Hawksbill_sea_turtle"><strong>Humble</strong> Hawksbill</a>, <a href="https://en.wikipedia.org/wiki/Jalisco_mud_turtle"><strong>Jazzy</strong> Jalisco</a> and so on). However a few years back, the ROS project released a breaking change that remodelled a lot of the underlying architecture, this <em>version</em> is now formally called ROS2 and no longer just ROS, and it&rsquo;s what we are using in this project. For the sake of simplicity we will refer to these ROS2 versions as ROS, but be warned that tutorials from the original ROS, are not fully translatable to how modern ROS(2) works. So, if you are diving deeper into this topic and are trying to find further readings, make sure that the material is about ROS2 (and ideally the two most recent LTS versions &ldquo;Humble&rdquo; and &ldquo;Jazzy&rdquo;) and not the original ROS.</p>
-</div>
+	<h3 id="chapter-iv">Chapter IV</h3>
+<h1 id="developing-ros2-within-the-rise-project">Developing ROS2 within the RISE project</h1>
+<p>Here we are not describing ROS2 in general, instead we are focussing on how we want to develop code in the RISE project. We want to talk about code guidelines, applicable standards and git procedures.</p>
 
-<p>You are welcome to only take a look at some of these, or watch all of them. Not for every task in the semester there is a need to know every bit of what&rsquo;s explained in this tutorial, but having a general grasp on how things work is quite useful.</p>
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
+        
+            </div> 
         
         </div>
         
@@ -771,6 +790,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -783,6 +803,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -867,4 +890,3 @@
 
   </body>
 </html>
-

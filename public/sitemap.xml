@@ -9,10 +9,14 @@
   </url><url>
     <loc>http://localhost:1313/ros2-concepts-advanced/executors/</loc>
   </url><url>
+    <loc>http://localhost:1313/ros2-development-rise/git-procedures/</loc>
+  </url><url>
     <loc>http://localhost:1313/installation-and-setup/prerequisites/</loc>
   </url><url>
     <loc>http://localhost:1313/ros2-concepts/</loc>
     <lastmod>2025-09-24T19:26:24+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/ros2-development-rise/ai-policy/</loc>
   </url><url>
     <loc>http://localhost:1313/installation-and-setup/installation/</loc>
   </url><url>
@@ -22,6 +26,9 @@
     <lastmod>2025-09-24T19:26:24+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ros2-concepts/ros2-packages/</loc>
+  </url><url>
+    <loc>http://localhost:1313/ros2-development-rise/</loc>
+    <lastmod>2025-09-24T19:26:24+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ros2-concepts/ros2-nodes/</loc>
   </url><url>

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Home :: My New Hugo Site</title>
+    <title>Git procedures :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1761063907" rel="stylesheet">
@@ -37,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/ros2-development-rise/git-procedures/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -377,7 +377,7 @@
   
     
     <li data-nav-id="/ros2-development-rise/" title="Developing ROS2 within RISE" class="dd-item
-        
+        parent
         
         
         ">
@@ -405,7 +405,7 @@
  
   
     
-      <li data-nav-id="/ros2-development-rise/git-procedures/" title="Git procedures" class="dd-item ">
+      <li data-nav-id="/ros2-development-rise/git-procedures/" title="Git procedures" class="dd-item active">
         <a href="/ros2-development-rise/git-procedures/">
         Git procedures
         <i class="fas fa-check read-icon"></i>
@@ -504,47 +504,142 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/ros2-development-rise/'>Developing ROS2 within RISE</a> > Git procedures
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Git procedures
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h2 id="an-introduction-to-ros2">An Introduction to ROS2</h2>
-<p><strong>Welcome to the RISE &ldquo;An Introduction to ROS2&rdquo; crash course!</strong></p>
-<p>The goal of this website is to provide notes and references for people interested in developing code within the ROS2 framework for use on the RISE exoskeleton. The world of ROS2 and robotic programming as a whole is quite vast, and this introduction is not attempting to introduce you to every nook and cranny of it. This is - hopefully not literally - a crash course, a set of notes and tasks that will help you get up to speed with writing ROS2 based code.</p>
-<p>There are several parts of the ROS2 framework that we dont use on the exoskeleton for various reasons. As a result, those will not be covered here, or at most just quickly glossed over. Some parts of the framework are of particular importance, and will therefore be looked on with greater attention to detail. If you want to learn more about the ROS2 framework as a whole, there are lots of <a href="">resources</a> you can choose from, that take a much more holistic approach to ROS2 and robotic programming.</p>
-<hr>
-<p>We don&rsquo;t assume any prerequisites in robotic programming, or any of the tools named in this tutorial - even though it certainly helps! This tutorial is structured so that you can skip chapters and parts that deal with information you already know. Every chapter is presented in four different ways:</p>
-<ol>
-<li>
-<p>This <strong>website</strong> combines notes, graphs, images and code snippets. Wherever possible we make references to the code used on the current exoskeleton.</p>
-</li>
-<li>
-<p>The <strong>presentation slides</strong> avaliable for download on the top of each chapter page. These are the slides used during the introduction workshop at the beginning of each semester.</p>
-</li>
-<li>
-<p>The <strong>video recordings</strong> of these presentations, as well as some other topics that are worth it to show in greater detail.</p>
-</li>
-<li>
-<p>Several <strong>code examples</strong> and notebooks for trying out the content by yourself on your own machine. All of these can be found in <a href="https://github.com/riserobotics/ros2course">this</a> repository.</p>
-</li>
-</ol>
+<p>*This is adapted from the text in the main code documentation <a href="">here</a> and visible as part of *</p>
+<p>Every development of code within the RISE project has to happen under <code>git</code> based version control. We want to be very clear here: except for initial testing and trialing, every bit of source code that is intended to at some point end up in productive use <strong>has to happen in a git based repository</strong>. Code that is submitted in any other form, be it zip archives, links to Nextcloud storage directories or USB thumb drives will be considered as <strong>not submitted</strong>. There are very few examples of projects that have been able to organize development efforts successfully with no involvement of a standardized version control system. The ones that have been able to do so, are usually led by quite senior people who have a lot of experience in developing software collaboratively. Therefore, knowing how to use git within the context of this project is important!</p>
 
-<div class="notices warning" ><p>As you will learn, ROS has been under development for a while. Right now, there are many <em>Distributions</em> of ROS that each are named after some species of turtle (<a href="https://en.wikipedia.org/wiki/Hawksbill_sea_turtle"><strong>Humble</strong> Hawksbill</a>, <a href="https://en.wikipedia.org/wiki/Jalisco_mud_turtle"><strong>Jazzy</strong> Jalisco</a> and so on). However a few years back, the ROS project released a breaking change that remodelled a lot of the underlying architecture, this <em>version</em> is now formally called ROS2 and no longer just ROS, and it&rsquo;s what we are using in this project. For the sake of simplicity we will refer to these ROS2 versions as ROS, but be warned that tutorials from the original ROS, are not fully translatable to how modern ROS(2) works. So, if you are diving deeper into this topic and are trying to find further readings, make sure that the material is about ROS2 (and ideally the two most recent LTS versions &ldquo;Humble&rdquo; and &ldquo;Jazzy&rdquo;) and not the original ROS.</p>
+<div class="notices tip" ><p>This applies to all <strong>source code</strong>, i.e. textual data within the project. We also version control other types of files with git and on GitHub, for example PCB layouts, these obviously have to follow other procedures that are documented within their respective wikis.</p>
 </div>
 
-<p>You are welcome to only take a look at some of these, or watch all of them. Not for every task in the semester there is a need to know every bit of what&rsquo;s explained in this tutorial, but having a general grasp on how things work is quite useful.</p>
+<p>There are several common procedures for how to use <code>git</code> effectively when collaborating on a code base within a team. They all have their advantages and disadvantages, and you may have a personal preference to use a different procedure. Even if, within your group, you agree that a different methodology is better, <strong>please don&rsquo;t deviate from the process described here</strong>. The code that is written here should ideally be maintainable for many semesters after you (potentially :) )depart from the project, so keeping consistency is important!</p>
+<h4 id="trunk-based-development">Trunk based development</h4>
+<p>All of our git repositories have a main branch, called <a href="https://sfconservancy.org/news/2020/jun/23/gitbranchname/">main</a>. This branch has several features, that make it different from other branches on the project. Some of them apply only to selected repositories, that contain more complex codebases.</p>
+<ol>
+<li>
+<p>The branch is protected, meaning it can not be deleted or edited by users with no owner privileges. This is to prevent accidental changes to the repository structure, and make sure that the branch will always continue to exist.</p>
+</li>
+<li>
+<p>You are not able to commit to the main branch. If you clone the repository, make changes to the main branch and then try to commit, GitHub will reject your attempt. This is to make sure that all changes to this branch have gone through a pull request (PR) process before being integrated. It&rsquo;s not allowed to force push either. This rule also applies to Maintainers.</p>
+</li>
+<li>
+<p>There are workflows that test the code. Whenever a pull request is made that targets the main branch, a set of workflows will run testing if, for example linting guidelines have been followed and if the project builds.</p>
+</li>
+</ol>
+<h4 id="planning--organization">Planning &amp; Organization</h4>
+<p>We strive to organize all working packages that need to be done, as part of the project within Git Issues. To see a tutorial on how to use and open up Issues see <a href="../git/git-issues/">here</a>. You should understand issues as a description of a work package, they can also be understood as a task description. The issue will contain all the information needed, to code up a working solution to the problem described within.</p>
+<p>Issues might also be so called &ldquo;Epics&rdquo;, in that case they serve as a summary of multiple issues that are linked inside. Epics should be used for larger features and operations, so most Issues in this project will probably be standalone. In case you are working on an Issue that is classified as an Epic, make sure to read the description carefully, as some parts of that issues might be blocked by others, i.e. they require the other Issue to be merged first</p>
+<h4 id="getting-assigned-to-an-issue">Getting assigned to an Issue.</h4>
+<p>There are multiple ways on how you can get assigned as an issue.</p>
+<ul>
+<li>
+<p>You may get assigned to that issue by the author, who thinks you are a good fit for wroking on it. In that case, feel free to contact the person who assigned you to get more information. If you are looking for information on the specific requirements of an Issues, contact the author.</p>
+</li>
+<li>
+<p>You assign yourself for an issue. If you see an open issue that is not assigned to someone you can claim that issue, if you don&rsquo;t see a [WIP!] designator in the title. If that is the case, then the issues is not yet finished and still needs additional information which has to be submitted by the author. Before you start working on that issues, make sure to communicate with the author about potential context information. The issue should contain all content relevant for solving, so usually you should not get any more information, however it is good practice to still check.</p>
+</li>
+</ul>
+<p>If you see an issue that is assigned to someone, however there has not been any activity for a while and you think you can contribute, write a comment in the issue log and ask if help is needed and you can take over.</p>
+<h4 id="working-on-an-issue">Working on an Issue</h4>
+<p>If you have an Issue assigned to yourself, you may start working on that issue. First step is to add the Label &ldquo;Doing&rdquo; in the &ldquo;Labels&rdquo; section of the issue. This lets other people know that the issues is actively worked o, and moves the card in the kanban board that we use for visualizing project progress.</p>
+<p>Next, you have to create a branch for the issue if it requires changes to the codebase. For a How-To guide on creating a new branch see <a href="../git/git-branches/">this</a> tutorial. If the issue does not require a change to the codebase, i.e. it has the Labels &ldquo;Admin&rdquo; or similar, no branch has to be created. After you created a branch, it has to be checked out on your local machine, this process is described in <a href="../git/git-checkout/">this</a> tutorial.</p>
+<p>While working on the issue keep all relevant <a href="../../guidelines/">coding guidelines</a> in mind, to be sure that your contributions can be accepted without lengthy review. In case additional standards or requirements on the specific implementation on a solution are needed, e.g. timing or similar, they have to be specified in the issue.</p>
+<p>During your time working on the issue you should commit your results frequently. For a detailed description on how to space individual commits, see <a href="../git/git-commits/">this</a> tutorial. Make sure to follow the recommendations on writing good commit messages, so tht others can follow the contributions you made.</p>
+<h4 id="documenting-your-issue">Documenting your issue.</h4>
+<p>Providing code without documentation is deemed insufficient and can not be merged. We will <strong>not</strong> accept issues without documentation, period. In case your issues is concerning a major update, there will most likely be a linked issue in the <a href="https://git.tu-berlin.de/rise/riseos-docs">documentation repository</a> already created. In order to merge your merge request, the documentation issue has to be accepted first. In case your issue did not feature a documentation issue, you will have to create an issue in the documentation repository yourself.</p>
+<h4 id="finishing-up-a-completed-issue">Finishing up a completed issue</h4>
+<p>If you are done with your work on an issue, and all the requirements are fulfilled you should test your solution thoroughly. The issue itself will specify a list of acceptance criterias, please try to verify that these requirements are met before proceeding further. This makes reviewing and testing easier for others down the line, and keeps everyone happy. A well tested merge request can be handled more quickly.</p>
+<p>Once you feel confident that your merge request fulfills the criteria, you can create a merge request to merge your changes into the main branch. See <a href="../git/git-merge/">this</a> tutorial for creating a merge request. Unless you are a Maintainer yourself, you will not be able to merge the merge request yourself. Every merge request has to be reviews first. For commits to the main repository, two reviews are suggested, with one of the two reviewers being a Maintainer. For the other reviewer feel free to select any one of your teammates. Reviewing merge requests and testing them is good practice to understand the whole codebase, and improving your ability to judge code for completeness and quality. It also distributes the testing process over more shoulders and makes sure that errors can be spotted quickly and reliably.</p>
+<p>Your merge request will now be reviewed. There are three possible outcomes.</p>
+<ul>
+<li>
+<p>There are requested changes: The reviewer requests changes if he feels like something has to be changed. Take a look at the comments he or she left you and try to understand the intention. If you feel like something is misunderstood, contact the reviewer in the comments of the merge request. Try to understand where the error is coming from. In the end, the software should launch on every system, so if something did not work on the system of the reviewer, it&rsquo;s likely still your fault to not provide enough documentation od reliability in code. Adress the changes the reviewer noted in additional commits to the same branch. If you are done, and feel like all issues have been adressed, request a review again.</p>
+</li>
+<li>
+<p>There are no requested changes: If that&rsquo;s the case, and both reviews return favorably, your merge request is merged and will be visible in the main branch of the repository.</p>
+</li>
+<li>
+<p>There are no requested changes to the code, but your documentation is insufficient: The reviewer did not accept your issue to be merged, however there are no requested changes to the code. Please address his concerns in the corresponding issue in the documentation repository.</p>
+</li>
+</ul>
+<blockquote>
+<p>Please make sure to contact the reviewer <strong>only</strong> with the comments within the merge request, and <strong>not</strong> with any other communication channel. If someone else is reading back on that merge request later, he will be confused if the communication is not transparently visible and lost in some other communication channel</p>
+</blockquote>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -771,6 +866,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -783,6 +879,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -799,6 +896,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
