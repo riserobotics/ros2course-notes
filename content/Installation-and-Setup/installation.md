@@ -18,7 +18,7 @@ The docker engine is the part of the program that allows the containers to run o
 
 You should end up with the Docker Desktop program on your computer, that after starting looks something like this. To get the full DOcker Desktop feature set, getting a Docker account is useful, but there is technically no need to do this. 
 
-![Image 1: Overview of the Docker Desktop GUI](/static/images/installation-and-setup-docker-desktop-screenshot.png)
+![Image 1: Overview of the Docker Desktop GUI](/images/installation-and-setup-docker-desktop-screenshot.png)
 
 #### Getting the RISE ROS2 Container
 Now we have to get the container that we want to run using Docker. In our case this includes all parts of the operating system as well as ROS2 pre installed.  There are multiple ways on how we can install the container, depending on your operating system or of you prefer a graphical install using the Docker Desktop GUI. See below for a fitting tutorial.
