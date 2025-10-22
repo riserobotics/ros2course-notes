@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Core Concepts of ROS2 on My New Hugo Site</title>
-    <link>http://localhost:1313/ros2-concepts/</link>
-    <description>Recent content in Core Concepts of ROS2 on My New Hugo Site</description>
+    <title>Core Concepts of ROS2 on RISE ROS2 Course!</title>
+    <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/</link>
+    <description>Recent content in Core Concepts of ROS2 on RISE ROS2 Course!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/ros2-concepts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Defining a robot</title>
-      <link>http://localhost:1313/ros2-concepts/defining-the-robot/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/defining-the-robot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/defining-the-robot/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/defining-the-robot/</guid>
       <description>&lt;p&gt;When we talk about robot programming, we should spend a quick minute thinking about what the robot exoskeleton that we use is made of and what parts are inside. THis will allows us to later understand what is going on, when we talk about connecting bus systems to actuators and reading pressure values from sensors.&lt;/p&gt;&#xA;&lt;h4 id=&#34;what-are-robots-made-of&#34;&gt;What are robots made of?&lt;/h4&gt;&#xA;&lt;p&gt;In our case, the robot is always the exoskeleton, or at the very least a simulation of the exoskeleton. There are plenty of other robots out there, from specialized industry machinery like pick and place machines tha assemble PCBs, humanoid bipedal walking robot like the famous Boston Dynamics Atlas, Quadrupeds like ANYmal that most resemble dogs or robotic arms with gripper attachments that can help to move small object around in environments designed for humans.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is robot programming?</title>
-      <link>http://localhost:1313/ros2-concepts/what-is-robot-programming/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/what-is-robot-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/what-is-robot-programming/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/what-is-robot-programming/</guid>
       <description>&lt;h4 id=&#34;a-little-bit-of-history&#34;&gt;A little bit of History!&lt;/h4&gt;&#xA;&lt;p&gt;ROS stands for Robot Operating System, yet it is not an operating system. Most accurately, we may describe ROS2 as a collection of tools, libraries, middleware and a community of packages that can be used to control some robots. The federated structure, and the modular nature of the system allows users to interchange software packages inbetween projects, and make components reusable.&lt;/p&gt;&#xA;&lt;p&gt;Traditionally this was, and still is not always the most straight forward approach. Robots are by nature quite heterogenous machines, in that two robots must not share any two components or even remotely look alike. This makes robot programming hard and equally heterogenous, people and companies usually started by developing robot software specifically tailored to their own needs, which is in many cases the right approach for companies with large R&amp;amp;D budgets and many people involved in development.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Preparing packages</title>
-      <link>http://localhost:1313/ros2-concepts/ros2-packages/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-packages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/ros2-packages/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-packages/</guid>
       <description>&lt;h4 id=&#34;how-ros2-structures-code&#34;&gt;How ROS2 structures code&lt;/h4&gt;&#xA;&lt;p&gt;We will now apply these concepts to the purpose of robotic software. The equivalent to a mechanical device, like an actuator or joint bearing is called a &lt;strong&gt;node&lt;/strong&gt;. You can think of a node as an individual process that is controlling some thing on your robot. For example, if you have a physical camera mounted to the chassis of a small quadruped, the software controlling the aperture control of that camera would be written as a node. If you have an actuator that is to be controlled using a PID-control loop, the code implementing this PID loop would be written as a node.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Creating nodes</title>
-      <link>http://localhost:1313/ros2-concepts/ros2-nodes/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/ros2-nodes/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-nodes/</guid>
       <description>&lt;h4 id=&#34;building-a-ros2-node&#34;&gt;Building a ROS2 Node&lt;/h4&gt;&#xA;&lt;p&gt;In this part of the tutorial series we want to specify an individual ROS2 node, and get an idea of how it looks like. As most of the functionality of ROS2 is centered around nodes, this tutorial is not encompassing all parts of Nodes. We will not get into executors, launch files and similar topics. These will have to wait until later. For now, the goal is to understand from a high-level perspective how Nodes work, and what you can do with them. Everything that goes on under the hood is a topic for a later chapter of this series.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The colcon build tool</title>
-      <link>http://localhost:1313/ros2-concepts/ros2-build-system/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-build-system/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/ros2-build-system/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-build-system/</guid>
       <description>&lt;p&gt;Within ROS2 we have to use the build system, to make the code that we wrote into our nodes usable and executable for the ROS2 core. Back in the day, in the times of ROS1, the build system for these purposes was called &lt;code&gt;catkin&lt;/code&gt;, which is a heavily customized set of CMake based routines. This build system had a couple of drawbacks and problems that pushed the maintainers of the ROS project towards developing a new system for the release of ROS2. This new system is made up of two parts, the &lt;code&gt;ament&lt;/code&gt; build system and the tooling that the developer uses to talk to this build system from the command line: &lt;code&gt;colcon&lt;/code&gt;. The type of &lt;code&gt;ament&lt;/code&gt; that is used depends on the type of package that is to be build. When we defined a package in the last chapter, you may remember that is twas important to specify this build system when setting up the package in the &lt;code&gt;package.xml&lt;/code&gt; file.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Communication between nodes</title>
-      <link>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</link>
+      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-communication-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ros2-concepts/ros2-communication-nodes/</guid>
+      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-concepts/ros2-communication-nodes/</guid>
       <description>&lt;p&gt;To make sure that data that is gathered, for example, on the camera is being transmitted to the actuator so that the robot would physically react to an obstacle that is in front of him, ROS2 provides a &lt;strong&gt;communication system&lt;/strong&gt; so that different nodes can communicate with another. This communication system, also sometimes referred to as a data-distribution layer, will send information between different processes at runtime. The theory and software that underpins this functionality is not unique to ROS2 and is used extensively throughout other software projects in the industry.&lt;/p&gt;</description>
     </item>
   </channel>
