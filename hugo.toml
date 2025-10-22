@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://https://riserobotics.github.io/ros2course-notes/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'RISE ROS2 Course!'
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
