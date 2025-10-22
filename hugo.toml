@@ -1,8 +1,8 @@
-baseURL = 'https://https://riserobotics.github.io/ros2course-notes/'
+baseURL = 'https://riserobotics.github.io/ros2course-notes/'
 languageCode = 'en-us'
 title = 'RISE ROS2 Course!'
 
-
+canonifyURLs = true
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"

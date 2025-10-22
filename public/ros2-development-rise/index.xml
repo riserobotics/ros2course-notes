@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Developing ROS2 within RISE on RISE ROS2 Course!</title>
-    <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/</link>
+    <link>http://localhost:1313/ros2course-notes/ros2-development-rise/</link>
     <description>Recent content in Developing ROS2 within RISE on RISE ROS2 Course!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ros2course-notes/ros2-development-rise/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git procedures</title>
-      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/git-procedures/</link>
+      <link>http://localhost:1313/ros2course-notes/ros2-development-rise/git-procedures/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/git-procedures/</guid>
+      <guid>http://localhost:1313/ros2course-notes/ros2-development-rise/git-procedures/</guid>
       <description>&lt;p&gt;*This is adapted from the text in the main code documentation &lt;a href=&#34;&#34;&gt;here&lt;/a&gt; and visible as part of *&lt;/p&gt;&#xA;&lt;p&gt;Every development of code within the RISE project has to happen under &lt;code&gt;git&lt;/code&gt; based version control. We want to be very clear here: except for initial testing and trialing, every bit of source code that is intended to at some point end up in productive use &lt;strong&gt;has to happen in a git based repository&lt;/strong&gt;. Code that is submitted in any other form, be it zip archives, links to Nextcloud storage directories or USB thumb drives will be considered as &lt;strong&gt;not submitted&lt;/strong&gt;. There are very few examples of projects that have been able to organize development efforts successfully with no involvement of a standardized version control system. The ones that have been able to do so, are usually led by quite senior people who have a lot of experience in developing software collaboratively. Therefore, knowing how to use git within the context of this project is important!&lt;/p&gt;</description>
     </item>
     <item>
       <title>AI &amp; LLM policy</title>
-      <link>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/ai-policy/</link>
+      <link>http://localhost:1313/ros2course-notes/ros2-development-rise/ai-policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313//riserobotics.github.io/ros2course-notes/ros2-development-rise/ai-policy/</guid>
+      <guid>http://localhost:1313/ros2course-notes/ros2-development-rise/ai-policy/</guid>
       <description>&lt;div class=&#34;notices warning&#34; &gt;&lt;p&gt;This article refers to the policy on AI used in developing code for use in the RISE codebase. It does not apply to the policy on AI used in reports, presentations and the final documentation in the RISE project that is relevant for grading. To see these guidelines, please refer to the ISIS course.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;There is a wide variety of tools available now that can be grouped under the name &amp;ldquo;generative AI&amp;rdquo; or LLMs that are capable of generating source code. The adoption of these tools is to be expected on a scale that is likley only growing in the future. Various open source projects have adopted a wide range of position (see &lt;a href=&#34;https://wiki.gentoo.org/wiki/Project:Council/AI_policy&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://lists.debian.org/debian-project/2024/05/msg00003.html&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://asahilinux.org/docs/project/policies/slop/&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://llvm.org/docs/FAQ.html#id4&#34;&gt;here&lt;/a&gt; or &lt;a href=&#34;https://osralliance.org/wp-content/uploads/2025/05/OSRF-Policy-on-the-Use-of-Generative-Tools-Generative-AI-in-Contributions.pdf&#34;&gt;here&lt;/a&gt;) on the topic of their use in creating code that is to be integrated into the codebase of these projects. For software engineering within the RISE project we adopted the following policy.&lt;/p&gt;</description>
     </item>
   </channel>
