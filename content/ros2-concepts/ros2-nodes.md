@@ -151,7 +151,7 @@ We have to define an entry point into the node, that specify to the ROS2 command
 ```python
 entry_points={
         'console_scripts': [
-                'test_our_node = ros2-sample-package-python.sample_node:main',
+                'test_our_node = ros2_sample_package_python.sample_node:main',
         ],
 },
 ```
