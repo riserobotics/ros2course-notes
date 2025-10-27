@@ -87,6 +87,8 @@ To check if everything worked as expected, you can run a test using this command
 {{% /expand%}}
 
 
+Before running the test make sure to move the whole folder that contains the tests into the `src` subdirectory and call them from there.
+
 ```bash
 pytest tests/test_structure_correct.py -v
 ```
